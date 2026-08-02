@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f9fc;
+  --foreground: #121418;
+  --color-ink: #121418;
+  --color-muted: #5d6675;
+  --color-surface: #ffffff;
+  --color-soft: #eef4fb;
+  --color-border: #d8e0ea;
+  --color-primary: #1456a0;
+  --color-primary-strong: #0a3f7a;
+  --color-accent: #b4232f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-omega-blue: var(--color-primary);
+  --color-omega-black: var(--color-ink);
+  --color-omega-red: var(--color-accent);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  transform: translateY(-150%);
+  border-radius: 0.375rem;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  transition: transform 120ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.section-band {
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+
+.section-eyebrow {
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cta-button {
+  align-items: center;
+  border-radius: 0.375rem;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 800;
+  gap: 0.65rem;
+  justify-content: center;
+  min-height: 3rem;
+  padding-inline: 1.25rem;
+  text-decoration: none;
+  transition:
+    background-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  width: fit-content;
+}
+
+.cta-button:active {
+  transform: scale(0.98);
+}
+
+.hero-media {
+  animation: hero-drift 18s ease-out forwards;
+  transform-origin: 72% 48%;
+}
+
+.reveal-item {
+  animation: reveal-up 620ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.reveal-item:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.reveal-item:nth-child(3) {
+  animation-delay: 130ms;
+}
+
+.reveal-item:nth-child(4) {
+  animation-delay: 190ms;
+}
+
+.reveal-item:nth-child(5) {
+  animation-delay: 250ms;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  transition:
+    box-shadow 220ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover {
+    box-shadow: 0 18px 44px rgba(10, 63, 122, 0.14);
+    transform: translateY(-4px);
+  }
+}
+
+.industry-item {
+  background: transparent;
+  border-radius: 0.375rem;
+  padding: 1.25rem 0.75rem;
+  text-align: center;
+}
+
+.industry-icon {
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 55%, white);
+  border-radius: 0.375rem;
+  color: var(--color-primary);
+  display: inline-flex;
+  font-size: 0.8rem;
+  font-weight: 900;
+  height: 3.5rem;
+  justify-content: center;
+  width: 3.5rem;
+}
+
+.certificate-stack {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 20rem;
+  position: relative;
+}
+
+.certificate-card {
+  aspect-ratio: 3 / 4;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  box-shadow: 0 18px 40px rgba(10, 63, 122, 0.11);
+  overflow: hidden;
+  width: min(38%, 10rem);
+}
+
+.certificate-card:nth-child(1) {
+  transform: rotate(-3deg) translateX(14%);
+}
+
+.certificate-card:nth-child(2) {
+  transform: translateY(-0.75rem);
+  z-index: 2;
+}
+
+.certificate-card:nth-child(3) {
+  transform: rotate(3deg) translateX(-14%);
+}
+
+.quote-panel {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 38%),
+    radial-gradient(circle at 84% 84%, rgba(255, 255, 255, 0.13), transparent 28%),
+    var(--color-primary-strong);
+  border-radius: 0.375rem;
+  min-height: 100%;
+  overflow: hidden;
+  padding: clamp(2rem, 4vw, 3rem);
+  position: relative;
+}
+
+.quote-panel::after,
+.export-section::after {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 24px 24px;
+  content: "";
+  inset: 0;
+  mask-image: linear-gradient(90deg, transparent, black);
+  opacity: 0.36;
+  pointer-events: none;
+  position: absolute;
+}
+
+.export-section {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(36, 139, 220, 0.35), transparent 34%),
+    var(--color-primary-strong);
+  overflow: hidden;
+  position: relative;
+}
+
+.export-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card {
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  min-height: 8rem;
+  padding: 1.25rem;
+}
+
+.gallery-tile {
+  aspect-ratio: 4 / 3;
+  background: var(--color-soft);
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.final-cta {
+  background:
+    linear-gradient(90deg, var(--color-primary-strong), var(--color-primary)),
+    var(--color-primary-strong);
+}
+
+.salt-visual {
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.92), rgba(232, 243, 255, 0.66) 42%, rgba(16, 86, 160, 0.34)),
+    linear-gradient(180deg, #dff0ff 0%, #f8fbff 52%, #e7eef7 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.salt-visual::before {
+  background:
+    radial-gradient(ellipse at 70% 78%, rgba(255, 255, 255, 0.95) 0 22%, transparent 23%),
+    radial-gradient(ellipse at 50% 92%, rgba(225, 235, 246, 0.94) 0 42%, transparent 43%);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.salt-visual__ridge {
+  background:
+    linear-gradient(18deg, transparent 0 43%, rgba(77, 93, 106, 0.55) 44% 47%, transparent 48%),
+    linear-gradient(18deg, transparent 0 49%, rgba(10, 63, 122, 0.38) 50% 52%, transparent 53%);
+  height: 70%;
+  left: 38%;
+  position: absolute;
+  top: 5%;
+  transform: rotate(-4deg);
+  width: 58%;
+}
+
+.salt-visual__belt {
+  background: rgba(10, 63, 122, 0.5);
+  height: 0.18rem;
+  left: 44%;
+  position: absolute;
+  top: 31%;
+  transform: rotate(-14deg);
+  width: 42%;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.01);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .cta-button {
+    width: 100%;
+  }
+
+  .hero-media {
+    animation: none;
+  }
+
+  .certificate-stack {
+    min-height: 15rem;
+  }
+}
