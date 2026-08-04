@@ -1,10 +1,10 @@
 import type { Locale } from "@/i18n/routing";
 import {
-  getActiveProductCategories,
   getContactInformation,
   getHeaderNavigation,
   getSocialLinks,
 } from "@/lib/cms";
+import { products } from "@/data/products";
 import { primaryNav } from "@/lib/site";
 import { SiteHeaderClient } from "./site-header-client";
 
@@ -29,11 +29,10 @@ type SocialLinksGlobal = {
 };
 
 export async function SiteHeader({ locale }: { locale: Locale }) {
-  const [navigation, contact, social, productCategories] = await Promise.all([
+  const [navigation, contact, social] = await Promise.all([
     getHeaderNavigation(locale) as Promise<HeaderGlobal | null>,
     getContactInformation(locale) as Promise<ContactGlobal | null>,
     getSocialLinks(locale) as Promise<SocialLinksGlobal | null>,
-    getActiveProductCategories(locale),
   ]);
 
   const navItems =
@@ -52,18 +51,11 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
       url: item.url as string,
     })) ?? [];
 
-  const categories = productCategories
-    .filter((category) => category.active !== false && category.slug && category.name)
-    .map((category) => ({
-      slug: category.slug as string,
-      name: category.name as string,
-    }));
-
   return (
     <SiteHeaderClient
       locale={locale}
       navItems={navItems}
-      productCategories={categories}
+      products={products.map((product) => ({ slug: product.slug, name: product.name }))}
       contact={{
         email: contact?.email ?? "export@omega-lines.local",
         phone: contact?.phone ?? "+00 000 000 0000",

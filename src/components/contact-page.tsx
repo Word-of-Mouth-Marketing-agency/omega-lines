@@ -1,6 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import { Phone, FileText, Smartphone, MapPin, Mail } from "lucide-react";
-import { getContactInformation, getActiveProducts } from "@/lib/cms";
+import { getContactInformation } from "@/lib/cms";
+import { products } from "@/data/products";
 import { InnerPageHero } from "./inner-page-hero";
 import { SectionHeading } from "./section-heading";
 import { ContactForm } from "./contact-form";
@@ -20,14 +21,11 @@ type ContactPageProps = {
 };
 
 export async function ContactPage({ locale, preselectedProduct }: ContactPageProps) {
-  const [contact, activeProducts] = await Promise.all([
-    getContactInformation(locale) as Promise<ContactGlobal | null>,
-    getActiveProducts(locale, 50),
-  ]);
+  const contact = await getContactInformation(locale) as ContactGlobal | null;
 
-  const products = activeProducts.map((p: { slug?: string | null; name?: string | null }) => ({
-    slug: p.slug ?? "",
-    name: p.name ?? "Unnamed",
+  const productOptions = products.map((product) => ({
+    slug: product.slug,
+    name: product.name,
   }));
 
   const phones = contact?.telephoneNumbers?.filter((t) => t.number) ?? [];
@@ -55,7 +53,7 @@ export async function ContactPage({ locale, preselectedProduct }: ContactPagePro
           ) : null}
 
           <div className="mt-10">
-            <ContactForm locale={locale} preselectedProduct={preselectedProduct} products={products} />
+            <ContactForm locale={locale} preselectedProduct={preselectedProduct} products={productOptions} />
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 type MediaLike = {
   url?: string | null;
@@ -31,6 +32,14 @@ export function ImageGallery({ images, productName }: ImageGalleryProps) {
   const allImages = images.length > 0 ? images : [];
   const mainImage = allImages[selectedIndex] ?? null;
 
+  const showPrevious = () => {
+    setSelectedIndex((current) => (current - 1 + allImages.length) % allImages.length);
+  };
+
+  const showNext = () => {
+    setSelectedIndex((current) => (current + 1) % allImages.length);
+  };
+
   if (!mainImage) {
     return (
       <div className="aspect-[4/3] overflow-hidden rounded-md bg-[var(--color-soft)]">
@@ -43,7 +52,7 @@ export function ImageGallery({ images, productName }: ImageGalleryProps) {
 
   return (
     <>
-      <div className="aspect-[4/3] overflow-hidden rounded-md bg-[var(--color-soft)]">
+      <div className="group relative aspect-[4/3] overflow-hidden rounded-md bg-[var(--color-soft)]">
         <button
           onClick={() => setLightboxOpen(true)}
           className="h-full w-full cursor-zoom-in"
@@ -55,9 +64,32 @@ export function ImageGallery({ images, productName }: ImageGalleryProps) {
             width={mainImage.width ?? 800}
             height={mainImage.height ?? 600}
             priority
-            className="h-full w-full object-contain"
+            className="h-full w-full object-cover"
           />
         </button>
+        {allImages.length > 1 ? (
+          <>
+            <button
+              type="button"
+              onClick={showPrevious}
+              className="absolute left-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/90 text-[var(--color-primary-strong)] shadow-lg transition hover:scale-105 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] sm:left-4"
+              aria-label="Previous product image"
+            >
+              <ChevronLeft aria-hidden="true" size={24} strokeWidth={2.5} />
+            </button>
+            <button
+              type="button"
+              onClick={showNext}
+              className="absolute right-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/90 text-[var(--color-primary-strong)] shadow-lg transition hover:scale-105 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] sm:right-4"
+              aria-label="Next product image"
+            >
+              <ChevronRight aria-hidden="true" size={24} strokeWidth={2.5} />
+            </button>
+            <span className="absolute bottom-3 right-3 rounded-full bg-black/65 px-3 py-1 text-xs font-bold text-white shadow sm:bottom-4 sm:right-4">
+              {selectedIndex + 1} / {allImages.length}
+            </span>
+          </>
+        ) : null}
       </div>
 
       {allImages.length > 1 ? (
@@ -111,12 +143,32 @@ export function ImageGallery({ images, productName }: ImageGalleryProps) {
               </p>
             ) : null}
           </div>
+          {allImages.length > 1 ? (
+            <>
+              <button
+                type="button"
+                onClick={showPrevious}
+                className="absolute left-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[var(--color-primary-strong)] shadow-lg transition hover:bg-white sm:left-6 sm:size-12"
+                aria-label="Previous product image"
+              >
+                <ChevronLeft aria-hidden="true" size={26} strokeWidth={2.5} />
+              </button>
+              <button
+                type="button"
+                onClick={showNext}
+                className="absolute right-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[var(--color-primary-strong)] shadow-lg transition hover:bg-white sm:right-6 sm:size-12"
+                aria-label="Next product image"
+              >
+                <ChevronRight aria-hidden="true" size={26} strokeWidth={2.5} />
+              </button>
+            </>
+          ) : null}
           <button
             onClick={() => setLightboxOpen(false)}
             className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
             aria-label="Close lightbox"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <X aria-hidden="true" size={20} />
           </button>
         </div>
       ) : null}

@@ -10,8 +10,8 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   return buildMetadata({
-    title: "Product Categories | Omega Lines",
-    description: "Explore Omega Lines salt products by food, industrial, water treatment, de-icing, animal nutrition, and specialist categories.",
+    title: "Salt Products | Omega Lines",
+    description: "Explore Omega Lines' complete range of ten salt products for food, industry, water treatment, de-icing, textiles, and animal nutrition.",
     locale,
     path: "/products",
   });

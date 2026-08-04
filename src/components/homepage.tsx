@@ -3,15 +3,15 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import {
   getActiveGalleryItems,
-  getActiveProductCategories,
   getHomepage,
 } from "@/lib/cms";
+import { products } from "@/data/products";
 import {
   getHomepageProfileContent,
   isPlaceholderCollection,
   resolveProfileCopy,
 } from "@/lib/homepage-content";
-import { ProductCategoryCarousel, type CategoryCardData } from "./product-category-carousel";
+import { ProductCarousel } from "./product-carousel";
 import { HomepageGalleryPreview } from "./homepage-gallery-preview";
 import { HomepageAboutPreview } from "./homepage-about-preview";
 import { Reveal, StaggerGrid } from "./gsap-reveal";
@@ -40,14 +40,6 @@ type MediaLike = {
   mimeType?: string | null;
 };
 
-type CategoryLike = {
-  id?: string | number;
-  slug?: string | null;
-  name?: string | null;
-  description?: string | null;
-  image?: MediaLike | number | null;
-};
-
 type GalleryLike = {
   id?: string | number;
   title?: string | null;
@@ -67,7 +59,6 @@ type HomepageGlobal = {
   productsEyebrow?: string | null;
   productsHeading?: string | null;
   productsDescription?: string | null;
-  featuredProductCategories?: Array<CategoryLike | number> | null;
   industriesHeading?: string | null;
   industriesDescription?: string | null;
   industries?: Array<{ title?: string | null; description?: string | null }> | null;
@@ -148,10 +139,6 @@ const shippingImages = [
     alt: "Cargo vessel used for international shipment",
   },
 ];
-
-function isCategory(value: CategoryLike | number | null | undefined): value is CategoryLike {
-  return typeof value === "object" && value !== null && typeof value.name === "string";
-}
 
 function isGallery(value: GalleryLike | number | null | undefined): value is GalleryLike {
   return typeof value === "object" && value !== null && typeof value.title === "string";
@@ -290,15 +277,10 @@ function CertificateGallery({
 
 export async function Homepage({ locale }: { locale: Locale }) {
   const profile = getHomepageProfileContent(locale);
-  const [homepage, activeCategories, activeGallery] = await Promise.all([
+  const [homepage, activeGallery] = await Promise.all([
     getHomepage(locale) as Promise<HomepageGlobal | null>,
-    getActiveProductCategories(locale),
     getActiveGalleryItems(locale, 6),
   ]);
-
-  const selectedCategories = homepage?.featuredProductCategories?.filter(isCategory) ?? [];
-  const categories = selectedCategories.length > 0 ? selectedCategories : activeCategories;
-  const categoryCards = categories.slice(0, 8);
 
   const selectedGallery = homepage?.featuredGalleryItems?.filter(isGallery) ?? [];
   const galleryItems = selectedGallery.length > 0 ? selectedGallery : (activeGallery as GalleryLike[]);
@@ -505,18 +487,12 @@ export async function Homepage({ locale }: { locale: Locale }) {
 
       <Reveal as="section" className="section-band" aria-labelledby="homepage-products">
         <SectionIntro
-          eyebrow={resolveProfileCopy(homepage?.productsEyebrow, profile.productsEyebrow)}
-          title={resolveProfileCopy(homepage?.productsHeading, profile.productsHeading)}
-          description={resolveProfileCopy(homepage?.productsDescription, profile.productsDescription)}
+          eyebrow="Salt Products"
+          title="Our Complete Salt Product Range"
+          description="Explore ten Omega Lines products directly, each with its real product image, applications, and quote request path."
         />
         <div className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8">
-          {categoryCards.length > 0 ? (
-            <ProductCategoryCarousel categories={categoryCards as CategoryCardData[]} locale={locale} />
-          ) : (
-            <div className="border border-dashed border-[var(--color-border)] bg-[var(--color-soft)] p-8 text-center text-sm leading-7 text-[var(--color-muted)]">
-              {profile.categoriesEmpty}
-            </div>
-          )}
+          <ProductCarousel items={products} locale={locale} />
         </div>
       </Reveal>
 

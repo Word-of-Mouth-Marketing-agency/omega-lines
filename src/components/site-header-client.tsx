@@ -33,7 +33,7 @@ type NavItem = {
   label: string;
 };
 
-type ProductCategoryLink = {
+type ProductLink = {
   slug: string;
   name: string;
 };
@@ -46,7 +46,7 @@ type SocialLink = {
 type SiteHeaderClientProps = {
   locale: Locale;
   navItems: NavItem[];
-  productCategories: ProductCategoryLink[];
+  products: ProductLink[];
   contact: {
     email: string;
     phone: string;
@@ -72,26 +72,26 @@ const preHeaderSocialLabels = ["facebook", "whatsapp", "x"];
 
 const productNavigationLabels: Record<Locale, { heading: string; viewAll: string; empty: string }> = {
   en: {
-    heading: "Product categories",
-    viewAll: "View all categories",
-    empty: "No categories available",
+    heading: "Products",
+    viewAll: "View all products",
+    empty: "No products available",
   },
   fr: {
-    heading: "Catégories de produits",
-    viewAll: "Voir toutes les catégories",
-    empty: "Aucune catégorie disponible",
+    heading: "Produits",
+    viewAll: "Voir tous les produits",
+    empty: "Aucun produit disponible",
   },
   de: {
-    heading: "Produktkategorien",
-    viewAll: "Alle Kategorien ansehen",
-    empty: "Keine Kategorien verfügbar",
+    heading: "Produkte",
+    viewAll: "Alle Produkte ansehen",
+    empty: "Keine Produkte verfügbar",
   },
 };
 
 export function SiteHeaderClient({
   locale,
   navItems,
-  productCategories,
+  products,
   contact,
   socialLinks,
 }: SiteHeaderClientProps) {
@@ -108,7 +108,7 @@ export function SiteHeaderClient({
   const drawerId = useId();
   const desktopProductsId = useId();
   const productsTriggerId = useId();
-  const firstCategoryId = useId();
+  const firstProductId = useId();
   const mobileProductsId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -204,10 +204,10 @@ export function SiteHeaderClient({
       event.preventDefault();
       setProductsOpen(true);
       requestAnimationFrame(() => {
-        (document.getElementById(firstCategoryId) as HTMLAnchorElement | null)?.focus();
+        (document.getElementById(firstProductId) as HTMLAnchorElement | null)?.focus();
       });
     }
-  }, [firstCategoryId]);
+  }, [firstProductId]);
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md">
@@ -321,18 +321,18 @@ export function SiteHeaderClient({
                             </p>
                           </div>
 
-                          {productCategories.length > 0 ? (
+                          {products.length > 0 ? (
                             <div className="grid grid-cols-2 gap-1 py-2">
-                              {productCategories.map((category, index) => (
+                              {products.map((product, index) => (
                                 <Link
-                                  key={category.slug}
-                                  id={index === 0 ? firstCategoryId : undefined}
-                                  href={`/products/category/${category.slug}`}
+                                  key={product.slug}
+                                  id={index === 0 ? firstProductId : undefined}
+                                  href={`/products/${product.slug}`}
                                   locale={locale}
                                   onClick={() => setProductsOpen(false)}
                                   className="group flex min-h-11 items-center justify-between gap-3 px-3 py-2 text-sm font-bold text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
                                 >
-                                  <span>{category.name}</span>
+                                  <span>{product.name}</span>
                                   <ArrowRight aria-hidden="true" size={14} className="shrink-0 opacity-45 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
                                 </Link>
                               ))}
@@ -493,15 +493,15 @@ export function SiteHeaderClient({
                           >
                             {productLabels.viewAll}
                           </Link>
-                          {productCategories.map((category) => (
+                          {products.map((product) => (
                             <Link
-                              key={category.slug}
-                              href={`/products/category/${category.slug}`}
+                              key={product.slug}
+                              href={`/products/${product.slug}`}
                               locale={locale}
                               onClick={closeDrawer}
                               className="flex min-h-11 items-center px-3 text-sm font-semibold text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
                             >
-                              {category.name}
+                              {product.name}
                             </Link>
                           ))}
                         </div>
