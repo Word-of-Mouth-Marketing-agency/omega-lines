@@ -36,8 +36,8 @@ function CmsImage({
       <Image
         src="/images/home/about-salt.webp"
         alt={alt}
-        width={1600}
-        height={900}
+        fill
+        sizes="(min-width: 1024px) 50vw, 100vw"
         className="h-full w-full object-cover"
       />
     );
@@ -47,8 +47,8 @@ function CmsImage({
     <Image
       src={media.url ?? ""}
       alt={media.alt ?? alt}
-      width={media.width ?? 700}
-      height={media.height ?? 525}
+      fill
+      sizes="(min-width: 1024px) 50vw, 100vw"
       className="h-full w-full object-cover"
     />
   );
@@ -67,7 +67,7 @@ export function HomepageAboutPreview({ data, locale }: HomepageAboutPreviewProps
     <section className="section-band bg-white" aria-labelledby="about-preview-heading">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
         <Reveal direction="left" distance={30}>
-          <figure className="relative min-h-[22rem] overflow-hidden rounded-md bg-[var(--color-soft)] shadow-[0_24px_70px_rgba(10,63,122,0.12)] sm:min-h-[28rem]">
+          <figure className="relative aspect-[4/3] overflow-hidden rounded-md bg-[var(--color-soft)] shadow-[0_24px_70px_rgba(10,63,122,0.12)]">
             <CmsImage media={data.aboutImage} alt={title} />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent p-6 pt-24 text-white">
               <p className="max-w-md text-sm font-semibold leading-6 text-white/90">

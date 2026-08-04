@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { z } from "zod";
-import { Loader2, CheckCircle, AlertCircle, Info } from "lucide-react";
+import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
 const phoneRegex = /^[+\d][\d\s\-()]*$/;
 
@@ -29,6 +29,7 @@ const inquirySchema = z.object({
   saltType: z.string().trim().optional().default(""),
   message: z.string().trim().min(1, "Message is required").max(5000, "Message must be under 5000 characters"),
   consent: z.boolean().refine((val) => val === true, "You must accept the privacy terms"),
+  companyWebsite: z.string().max(0).optional().default(""),
 });
 
 type InquiryFormValues = z.infer<typeof inquirySchema>;
@@ -42,10 +43,9 @@ type ContactFormProps = {
   locale: string;
   preselectedProduct?: string | null;
   products?: ProductOption[];
-  isReviewMode?: boolean;
 };
 
-export function ContactForm({ locale, preselectedProduct, products = [], isReviewMode = false }: ContactFormProps) {
+export function ContactForm({ locale, preselectedProduct, products = [] }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
@@ -67,6 +67,7 @@ export function ContactForm({ locale, preselectedProduct, products = [], isRevie
     saltType: "",
     message: "",
     consent: false as unknown as true,
+    companyWebsite: "",
   });
 
   const updateField = useCallback((field: keyof InquiryFormValues, value: string | boolean) => {
@@ -83,11 +84,6 @@ export function ContactForm({ locale, preselectedProduct, products = [], isRevie
       e.preventDefault();
       setFieldErrors({});
 
-      if (isReviewMode) {
-        setStatus("success");
-        return;
-      }
-
       const result = inquirySchema.safeParse(form);
       if (!result.success) {
         const errors: Record<string, string> = {};
@@ -103,11 +99,15 @@ export function ContactForm({ locale, preselectedProduct, products = [], isRevie
       setErrorMessage("");
 
       try {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
         const res = await fetch("/api/submit-inquiry", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...result.data, locale }),
+          signal: controller.signal,
         });
+        window.clearTimeout(timeout);
 
         if (!res.ok) {
           const err = await res.json().catch(() => ({ error: "Submission failed" }));
@@ -117,25 +117,19 @@ export function ContactForm({ locale, preselectedProduct, products = [], isRevie
         setStatus("success");
       } catch (err) {
         setStatus("error");
-        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+        setErrorMessage(
+          err instanceof DOMException && err.name === "AbortError"
+            ? "The request timed out. Please check your connection and try again."
+            : err instanceof Error
+              ? err.message
+              : "Something went wrong. Please try again.",
+        );
       }
     },
-    [form, locale, isReviewMode]
+    [form, locale]
   );
 
   if (status === "success") {
-    if (isReviewMode) {
-      return (
-        <div className="flex flex-col items-center gap-4 rounded-md border border-amber-200 bg-amber-50 p-10 text-center" role="status" aria-live="polite">
-          <Info aria-hidden="true" size={40} className="text-amber-600" />
-          <h3 className="text-xl font-bold text-amber-800">Review Preview Mode</h3>
-          <p className="max-w-md text-sm text-amber-700">
-            This form is disabled in the client review preview.
-          </p>
-        </div>
-      );
-    }
-
     return (
       <div className="flex flex-col items-center gap-4 rounded-md border border-green-200 bg-green-50 p-10 text-center" role="status" aria-live="polite">
         <CheckCircle aria-hidden="true" size={40} className="text-green-600" />
@@ -149,12 +143,18 @@ export function ContactForm({ locale, preselectedProduct, products = [], isRevie
 
   return (
     <form onSubmit={onSubmit} noValidate>
-      {isReviewMode ? (
-        <div className="mb-6 flex items-center gap-3 rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800" role="status" aria-live="polite">
-          <Info aria-hidden="true" size={18} className="shrink-0" />
-          <span>This form is disabled in the client review preview. No data will be submitted.</span>
-        </div>
-      ) : null}
+      <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="companyWebsite">Leave this field empty</label>
+        <input
+          id="companyWebsite"
+          name="companyWebsite"
+          value={form.companyWebsite}
+          onChange={(e) => updateField("companyWebsite", e.target.value)}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field name="firstName" label="First Name" error={fieldErrors.firstName} required>
           <input id="firstName" value={form.firstName} onChange={(e) => updateField("firstName", e.target.value)} type="text" className={inputClass} placeholder="First name" aria-describedby={fieldErrors.firstName ? "firstName-error" : undefined} aria-invalid={fieldErrors.firstName ? "true" : undefined} />

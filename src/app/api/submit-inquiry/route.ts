@@ -1,39 +1,47 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getPayloadClient } from "@/lib/payload";
-import { isUIReviewMode } from "@/lib/review-mode";
 
+const phoneRegex = /^[+\d][\d\s\-()]*$/;
 const bodySchema = z.object({
-  firstName: z.string().trim().min(1),
-  lastName: z.string().trim().min(1),
-  company: z.string().trim().optional().default(""),
-  address: z.string().trim().optional().default(""),
-  city: z.string().trim().min(1),
-  country: z.string().trim().min(1),
-  phone: z.string().trim().min(1),
-  cellPhone: z.string().trim().min(1),
-  fax: z.string().trim().optional().default(""),
-  email: z.string().trim().min(1).email(),
-  website: z.string().trim().optional().default(""),
-  interestedIn: z.string().trim().optional().default(""),
-  omegaLineProduct: z.string().trim().optional().default(""),
-  saltType: z.string().trim().optional().default(""),
+  firstName: z.string().trim().min(1).max(100),
+  lastName: z.string().trim().min(1).max(100),
+  company: z.string().trim().max(200).optional().default(""),
+  address: z.string().trim().max(300).optional().default(""),
+  city: z.string().trim().min(1).max(100),
+  country: z.string().trim().min(1).max(100),
+  phone: z.string().trim().min(1).max(50).regex(phoneRegex),
+  cellPhone: z.string().trim().min(1).max(50).regex(phoneRegex),
+  fax: z.string().trim().max(50).refine((value) => value === "" || phoneRegex.test(value)).optional().default(""),
+  email: z.string().trim().min(1).max(254).email(),
+  website: z.string().trim().max(300).refine((value) => value === "" || /^https?:\/\/.+/i.test(value)).optional().default(""),
+  interestedIn: z.string().trim().max(200).optional().default(""),
+  omegaLineProduct: z.string().trim().max(200).optional().default(""),
+  saltType: z.string().trim().max(200).optional().default(""),
   message: z.string().trim().min(1).max(5000),
   consent: z.literal(true),
-  locale: z.string().optional().default("en"),
+  locale: z.enum(["en", "fr", "de"]).optional().default("en"),
+  companyWebsite: z.string().max(0).optional().default(""),
 });
 
 export async function POST(request: Request) {
-  if (isUIReviewMode) {
-    return NextResponse.json(
-      { success: false, error: "This form is disabled in the client review preview." },
-      { status: 200 },
-    );
+  const contentType = request.headers.get("content-type") ?? "";
+  if (!contentType.toLowerCase().startsWith("application/json")) {
+    return NextResponse.json({ error: "Content type must be application/json" }, { status: 415 });
+  }
+
+  const contentLength = Number(request.headers.get("content-length") ?? "0");
+  if (Number.isFinite(contentLength) && contentLength > 64_000) {
+    return NextResponse.json({ error: "Request is too large" }, { status: 413 });
   }
 
   try {
     const body = await request.json();
     const parsed = bodySchema.parse(body);
+
+    if (parsed.companyWebsite) {
+      return NextResponse.json({ success: true });
+    }
 
     const payload = await getPayloadClient();
 
@@ -67,6 +75,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Validation failed", details: error.issues }, { status: 400 });
     }
     console.error("Inquiry submission error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "We could not submit your inquiry right now. Please try again shortly." },
+      { status: 503 },
+    );
   }
 }

@@ -1,7 +1,6 @@
 import type { Locale } from "@/i18n/routing";
 import { Phone, FileText, Smartphone, MapPin, Mail } from "lucide-react";
 import { getContactInformation, getActiveProducts } from "@/lib/cms";
-import { isUIReviewMode } from "@/lib/review-mode";
 import { InnerPageHero } from "./inner-page-hero";
 import { SectionHeading } from "./section-heading";
 import { ContactForm } from "./contact-form";
@@ -56,7 +55,7 @@ export async function ContactPage({ locale, preselectedProduct }: ContactPagePro
           ) : null}
 
           <div className="mt-10">
-            <ContactForm locale={locale} preselectedProduct={preselectedProduct} products={products} isReviewMode={isUIReviewMode} />
+            <ContactForm locale={locale} preselectedProduct={preselectedProduct} products={products} />
           </div>
         </div>
       </section>

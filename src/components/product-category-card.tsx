@@ -18,17 +18,13 @@ function isMedia(value: CmsMedia | number | null | undefined): value is CmsMedia
 
 function CategoryFallback({ name }: { name: string }) {
   return (
-    <div
-      className="salt-visual relative h-full w-full overflow-hidden bg-[var(--color-soft)]"
-      role="img"
-      aria-label={`${name} category illustration`}
-    >
-      <span className="salt-visual__ridge" aria-hidden="true" />
-      <span className="salt-visual__belt" aria-hidden="true" />
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--color-primary-strong)]/45 to-transparent p-5 pt-16">
-        <span className="text-xs font-black uppercase tracking-[0.16em] text-white/90">Omega Lines</span>
-      </div>
-    </div>
+    <Image
+      src="/images/home/about-salt.webp"
+      alt={`${name} salt products`}
+      width={1600}
+      height={900}
+      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.035]"
+    />
   );
 }
 

@@ -25,12 +25,15 @@ function isMedia(value: MediaLike | number | null | undefined): value is MediaLi
   return typeof value === "object" && value !== null && typeof value.url === "string";
 }
 
-function SaltPlaceholder({ className, label }: { className: string; label: string }) {
+function SaltFallback({ className, label }: { className: string; label: string }) {
   return (
-    <div className={`${className} salt-visual`} role="img" aria-label={label}>
-      <span className="salt-visual__ridge" aria-hidden="true" />
-      <span className="salt-visual__belt" aria-hidden="true" />
-    </div>
+    <Image
+      src="/images/home/about-salt.webp"
+      alt={label}
+      width={1600}
+      height={900}
+      className={className}
+    />
   );
 }
 
@@ -44,7 +47,7 @@ function CmsImage({
   className: string;
 }) {
   if (!isMedia(media)) {
-    return <SaltPlaceholder className={className} label={alt} />;
+    return <SaltFallback className={className} label={alt} />;
   }
   return (
     <Image
@@ -137,7 +140,7 @@ export function ProductCategoryCarousel({ categories, locale }: ProductCategoryC
                     <div className="aspect-[4/3] overflow-hidden bg-[var(--color-soft)]">
                       <CmsImage
                         media={category.image}
-                        alt={`${title} placeholder`}
+                        alt={`${title} salt products`}
                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       />
                     </div>
