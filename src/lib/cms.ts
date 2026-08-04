@@ -322,7 +322,7 @@ export async function getActiveProductsByCategory(
   });
 }
 
-export async function getActiveGalleryItems(locale: Locale, limit = 6) {
+export async function getActiveGalleryItems(locale: Locale, limit?: number) {
   if (isUIReviewMode) return [];
   return getPayloadOrEmpty(async () => {
     const payload = await getPayloadClient();
@@ -330,10 +330,10 @@ export async function getActiveGalleryItems(locale: Locale, limit = 6) {
       collection: "gallery",
       depth: 1,
       fallbackLocale: "en",
-      limit,
       locale,
       sort: "sortOrder",
       where: { active: { equals: true } },
+      ...(typeof limit === "number" ? { limit } : { pagination: false }),
     });
     return result.docs;
   });

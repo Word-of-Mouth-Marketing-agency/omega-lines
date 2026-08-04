@@ -52,6 +52,8 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
+    // Keep local development non-interactive; schema changes are applied through Payload migrations.
+    push: false,
   }),
   editor: lexicalEditor(),
   globals: [AboutPage, SiteSettings, HeaderNavigation, Footer, ContactInformation, SocialLinks, Homepage],
