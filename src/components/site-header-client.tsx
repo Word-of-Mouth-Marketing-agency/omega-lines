@@ -33,7 +33,7 @@ type NavItem = {
   label: string;
 };
 
-type ProductLink = {
+type ProductCategoryLink = {
   slug: string;
   name: string;
 };
@@ -46,7 +46,7 @@ type SocialLink = {
 type SiteHeaderClientProps = {
   locale: Locale;
   navItems: NavItem[];
-  products: ProductLink[];
+  productCategories: ProductCategoryLink[];
   contact: {
     email: string;
     phone: string;
@@ -91,7 +91,7 @@ const productNavigationLabels: Record<Locale, { heading: string; viewAll: string
 export function SiteHeaderClient({
   locale,
   navItems,
-  products,
+  productCategories,
   contact,
   socialLinks,
 }: SiteHeaderClientProps) {
@@ -321,18 +321,18 @@ export function SiteHeaderClient({
                             </p>
                           </div>
 
-                          {products.length > 0 ? (
+                          {productCategories.length > 0 ? (
                             <div className="grid grid-cols-2 gap-1 py-2">
-                              {products.map((product, index) => (
+                              {productCategories.map((category, index) => (
                                 <Link
-                                  key={product.slug}
+                                  key={category.slug}
                                   id={index === 0 ? firstProductId : undefined}
-                                  href={`/products/${product.slug}`}
+                                  href={`/products#category-${category.slug}`}
                                   locale={locale}
                                   onClick={() => setProductsOpen(false)}
                                   className="group flex min-h-11 items-center justify-between gap-3 px-3 py-2 text-sm font-bold text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
                                 >
-                                  <span>{product.name}</span>
+                                  <span>{category.name}</span>
                                   <ArrowRight aria-hidden="true" size={14} className="shrink-0 opacity-45 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
                                 </Link>
                               ))}
@@ -493,15 +493,15 @@ export function SiteHeaderClient({
                           >
                             {productLabels.viewAll}
                           </Link>
-                          {products.map((product) => (
+                          {productCategories.map((category) => (
                             <Link
-                              key={product.slug}
-                              href={`/products/${product.slug}`}
+                              key={category.slug}
+                              href={`/products#category-${category.slug}`}
                               locale={locale}
                               onClick={closeDrawer}
                               className="flex min-h-11 items-center px-3 text-sm font-semibold text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
                             >
-                              {product.name}
+                              {category.name}
                             </Link>
                           ))}
                         </div>

@@ -27,7 +27,7 @@ export function ProductsPage({ locale }: { locale: Locale }) {
               return (
                 <section key={category} aria-labelledby={`category-${category.toLowerCase().replaceAll(" ", "-")}`}>
                   <div className="flex items-end justify-between gap-4 border-b border-[var(--color-border)] pb-4">
-                    <h2 id={`category-${category.toLowerCase().replaceAll(" ", "-")}`} className="text-2xl font-black text-[var(--color-ink)] sm:text-3xl">
+                    <h2 id={`category-${category.toLowerCase().replaceAll(" ", "-")}`} className="scroll-mt-32 text-2xl font-black text-[var(--color-ink)] sm:text-3xl">
                       {category}
                     </h2>
                     <p className="text-sm font-bold text-[var(--color-muted)]">{categoryProducts.length} products</p>
