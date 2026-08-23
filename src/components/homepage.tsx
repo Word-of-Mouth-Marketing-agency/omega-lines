@@ -298,10 +298,7 @@ export async function Homepage({ locale }: { locale: Locale }) {
     ? profile.qualityBenefits
     : cmsBenefits.map((item) => item.benefit as string);
 
-  const cmsTrustIndicators = homepage?.trustIndicators?.filter((item) => item.label) ?? [];
-  const trustIndicators = isPlaceholderCollection(cmsTrustIndicators, (item) => item.label)
-    ? profile.trustIndicators
-    : cmsTrustIndicators.map((item) => item.label as string);
+  const trustIndicators = profile.trustIndicators;
 
   const cmsStrengths = homepage?.aboutStrengths?.filter((item) => item.label) ?? [];
   const aboutStrengths = isPlaceholderCollection(cmsStrengths, (item) => item.label)
@@ -311,7 +308,7 @@ export async function Homepage({ locale }: { locale: Locale }) {
   const aboutData: AboutPreviewData = {
     aboutEyebrow: resolveProfileCopy(homepage?.aboutEyebrow, profile.aboutEyebrow),
     aboutHeading: resolveProfileCopy(homepage?.aboutHeading, profile.aboutHeading),
-    aboutDescription: resolveProfileCopy(homepage?.aboutDescription, profile.aboutDescription),
+    aboutDescription: profile.aboutDescription,
     aboutImage: homepage?.aboutImage,
     aboutStrengths: aboutStrengths.map((label) => ({ label })),
     aboutButtonLabel: resolveProfileCopy(homepage?.aboutButtonLabel, profile.aboutButtonLabel),
@@ -345,7 +342,6 @@ export async function Homepage({ locale }: { locale: Locale }) {
               />
             )}
           </video>
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,28,56,0.08)_20%,rgba(4,28,56,0.22)_58%,rgba(4,28,56,0.68)_100%)]" />
         </div>
 
         <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-32 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
@@ -539,9 +535,6 @@ export async function Homepage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 border-l-2 border-[var(--color-accent)] pl-4 text-xs leading-6 text-[var(--color-muted)]">
-              {profile.certificatesNote}
-            </p>
             <div className="mt-8">
               <CtaLink href="/gallery" label={profile.certificatesAction} locale={locale} variant="secondary" />
             </div>
@@ -581,7 +574,7 @@ export async function Homepage({ locale }: { locale: Locale }) {
           </StaggerGrid>
 
           <div className="mt-6 grid overflow-hidden rounded-md border border-[var(--color-border)] bg-white sm:grid-cols-2 lg:grid-cols-4">
-            {profile.packagingOptions.map((option, index) => (
+            {profile.packagingOptions.map((option) => (
               <article
                 key={option.title}
                 className="border-b border-[var(--color-border)] p-5 last:border-b-0 sm:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0"

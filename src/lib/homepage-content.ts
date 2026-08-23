@@ -52,7 +52,6 @@ export type HomepageProfileContent = {
   qualityDescription: string;
   qualityBenefits: string[];
   certificatesAction: string;
-  certificatesNote: string;
   packagingEyebrow: string;
   packagingHeading: string;
   packagingDescription: string;
@@ -84,7 +83,7 @@ const en: HomepageProfileContent = {
   secondaryCtaLabel: "Request a Specification Quote",
   trustIndicators: [
     "Over two decades of salt expertise",
-    "Manufacturing, packaging and export",
+    "Export and supply",
     "Custom granulation and packaging",
     "Food, industrial and specialized uses",
   ],
@@ -94,7 +93,7 @@ const en: HomepageProfileContent = {
   welcomeParagraphs: [
     "Professional and skilled staff have supported Omega Line Egypt’s success and expansion over many years. Continued demand from African buyers helped make salt supply the company’s central focus.",
     "Omega Line Egypt supplies raw materials for processing factories as well as finished salt products. The company’s original Dolphin trademark is distributed for edible iodized salt and the food-industry sector, while products carrying customers’ own logos have also been supplied on a regular basis.",
-    "Prompt service, quality and an affordable price are presented as the company’s competitive foundation. The business describes established relationships across Europe, Africa, the Middle East and the Far East, with China identified as a leading buyer in that expansion.",
+    "Prompt service, quality and an affordable price are presented as the company’s competitive foundation. The business describes established relationships across Europe, Africa, the Middle East and the Far East.",
     "The document describes salt as an industry that supports Egypt’s economy and as a mineral product with many uses that became the company’s main export line. It also records overseas growth, international business connections and plans to create branches abroad.",
     "Malta and Bahrain are identified as markets for water-softening salt pellets. The document also highlights raw salt supplied to processors, where material quality can improve processing results and create savings for factories.",
   ],
@@ -106,12 +105,12 @@ const en: HomepageProfileContent = {
     { title: "Service promise", description: "High quality, good service and an affordable price form the stated competitive position." },
   ],
   welcomeMarketsHeading: "Markets named in the welcome document",
-  welcomeMarkets: ["Cameroon", "Côte d’Ivoire", "Equatorial Guinea", "Mauritius", "Angola", "Congo", "Togo", "Ghana", "Nigeria", "Senegal", "Burundi", "Netherlands", "Germany", "Turkey", "Ethiopia", "Sudan", "Morocco", "Syria", "Lebanon", "Malta", "Bahrain", "China"],
+  welcomeMarkets: ["Cameroon", "Côte d’Ivoire", "Equatorial Guinea", "Mauritius", "Angola", "Congo", "Togo", "Ghana", "Nigeria", "Senegal", "Burundi", "Netherlands", "Germany", "Turkey", "Ethiopia", "Sudan", "Morocco", "Syria", "Lebanon", "Malta", "Bahrain", "China", "Poland", "Kenya", "Rwanda", "Benin", "Tanzania", "Uganda"],
   welcomeLegacyNote: "The welcome document records ISO 9001:2008 for export of salt and quality management systems, and ISO 22000:2005 for food safety management systems. Newer certificate documents are presented on the About Us page.",
   aboutEyebrow: "About Omega Line Egypt",
   aboutHeading: "A Trusted Egyptian Salt Partner for Global Industries",
   aboutDescription:
-    "Omega Line Egypt manufactures, packages and exports a broad range of salt products. Our work is built around disciplined management, consistent quality, modern packaging and professional supervision to meet required chemical specifications and customer expectations in local and international markets.",
+    "Omega Line Egypt exports and supplies a broad range of salt products. Our work is built around disciplined management, consistent quality, modern packaging and professional supervision to meet required chemical specifications and customer expectations in local and international markets.",
   aboutStrengths: [
     "Customer-specific chemical specifications",
     "Different granulations and packaging formats",
@@ -191,8 +190,6 @@ const en: HomepageProfileContent = {
     "Current technical documents and certificate copies are available on request.",
   ],
   certificatesAction: "View Quality Documents",
-  certificatesNote:
-    "Certificate images are presented from the company profile for reference. Ask our team for the latest valid copies and product-specific documentation.",
   packagingEyebrow: "Flexible packaging",
   packagingHeading: "Packaging Built Around Your Supply Chain",
   packagingDescription:
@@ -252,9 +249,9 @@ const en: HomepageProfileContent = {
   finalCtaDescription:
     "Send your technical and commercial requirements to Omega Line Egypt and start a focused conversation about the right salt, specification and packaging for your market.",
   finalCtaAction: "Request a Quote",
-  seoTitle: "Omega Line Egypt | Salt Manufacturing, Packaging and Export",
+  seoTitle: "Omega Line Egypt | Salt Export and Supply",
   seoDescription:
-    "Omega Line Egypt manufactures, packages and exports salt for food, industrial, water-treatment, de-icing, pharmaceutical, animal-feed and specialized applications.",
+    "Omega Line Egypt exports and supplies salt for food, industrial, water-treatment, de-icing, pharmaceutical, animal-feed and specialized applications.",
 };
 
 const fr: HomepageProfileContent = {
@@ -266,7 +263,7 @@ const fr: HomepageProfileContent = {
   secondaryCtaLabel: "Demander un devis technique",
   trustIndicators: [
     "Plus de vingt ans d'expertise",
-    "Fabrication, conditionnement et export",
+    "Exportation et fourniture",
     "Granulométrie et emballage sur mesure",
     "Usages alimentaires, industriels et spécialisés",
   ],
@@ -276,7 +273,7 @@ const fr: HomepageProfileContent = {
   welcomeParagraphs: [
     "Un personnel professionnel et qualifié soutient depuis de nombreuses années la réussite et l’expansion d’Omega Line Egypt. La demande continue des acheteurs africains a placé l’approvisionnement en sel au centre de l’activité.",
     "Omega Line Egypt fournit des matières premières aux usines de transformation ainsi que des produits finis. La marque originale Dolphin est distribuée pour le sel iodé alimentaire et le secteur agroalimentaire, tandis que des produits portant les logos des clients sont également fournis régulièrement.",
-    "La rapidité du service, la qualité et un prix abordable constituent le positionnement concurrentiel déclaré. L’entreprise décrit des relations établies en Europe, en Afrique, au Moyen-Orient et en Extrême-Orient, avec la Chine comme acheteur majeur de cette expansion.",
+    "La rapidité du service, la qualité et un prix abordable constituent le positionnement concurrentiel déclaré. L’entreprise décrit des relations établies en Europe, en Afrique, au Moyen-Orient et en Extrême-Orient.",
     "Le document présente le sel comme une industrie qui soutient l’économie égyptienne et comme un produit minéral aux nombreux usages devenu la principale ligne d’exportation de l’entreprise. Il mentionne également la croissance internationale, les relations commerciales mondiales et la création de succursales à l’étranger.",
     "Malte et Bahreïn sont identifiés comme marchés pour les pastilles de sel d’adoucissement de l’eau. Le document souligne aussi l’approvisionnement des transformateurs en sel brut, dont la qualité peut améliorer les résultats de traitement et générer des économies.",
   ],
@@ -293,7 +290,7 @@ const fr: HomepageProfileContent = {
   aboutEyebrow: "À propos d'Omega Line Egypt",
   aboutHeading: "Un partenaire égyptien fiable pour les industries mondiales",
   aboutDescription:
-    "Omega Line Egypt fabrique, conditionne et exporte une large gamme de sels. Notre travail repose sur une gestion rigoureuse, une qualité constante, des emballages modernes et une supervision professionnelle afin de répondre aux spécifications chimiques et aux attentes des clients.",
+    "Omega Line Egypt exporte et fournit une large gamme de sels. Notre travail repose sur une gestion rigoureuse, une qualité constante, des emballages modernes et une supervision professionnelle afin de répondre aux spécifications chimiques et aux attentes des clients.",
   aboutStrengths: [
     "Spécifications chimiques selon le client",
     "Différentes granulométries et formats",
@@ -349,8 +346,6 @@ const fr: HomepageProfileContent = {
     "Les documents techniques et certificats à jour sont disponibles sur demande.",
   ],
   certificatesAction: "Voir les documents qualité",
-  certificatesNote:
-    "Les certificats présentés proviennent du profil de l'entreprise. Demandez à notre équipe les copies actuellement valides et la documentation du produit.",
   packagingEyebrow: "Conditionnement flexible",
   packagingHeading: "Un emballage adapté à votre chaîne logistique",
   packagingDescription:
@@ -383,9 +378,9 @@ const fr: HomepageProfileContent = {
   finalCtaDescription:
     "Envoyez vos exigences techniques et commerciales à Omega Line Egypt pour identifier le sel, la spécification et l'emballage adaptés à votre marché.",
   finalCtaAction: "Demander un devis",
-  seoTitle: "Omega Line Egypt | Fabrication, conditionnement et exportation de sel",
+  seoTitle: "Omega Line Egypt | Exportation et fourniture de sel",
   seoDescription:
-    "Omega Line Egypt fabrique, conditionne et exporte du sel pour l'alimentation, l'industrie, le traitement de l'eau, le déneigement, la pharmacie et l'alimentation animale.",
+    "Omega Line Egypt exporte et fournit du sel pour l'alimentation, l'industrie, le traitement de l'eau, le déneigement, la pharmacie et l'alimentation animale.",
 };
 
 const de: HomepageProfileContent = {
@@ -397,7 +392,7 @@ const de: HomepageProfileContent = {
   secondaryCtaLabel: "Spezifikationsangebot anfragen",
   trustIndicators: [
     "Mehr als zwanzig Jahre Erfahrung",
-    "Herstellung, Verpackung und Export",
+    "Export und Lieferung",
     "Kundenspezifische Körnung und Verpackung",
     "Lebensmittel-, Industrie- und Spezialanwendungen",
   ],
@@ -407,7 +402,7 @@ const de: HomepageProfileContent = {
   welcomeParagraphs: [
     "Professionelle und qualifizierte Mitarbeiter unterstützen seit vielen Jahren den Erfolg und die Expansion von Omega Line Egypt. Die anhaltende Nachfrage afrikanischer Käufer machte die Salzversorgung zum Schwerpunkt des Unternehmens.",
     "Omega Line Egypt liefert Rohstoffe für Verarbeitungsbetriebe sowie fertige Salzprodukte. Die ursprüngliche Marke Dolphin wird für jodiertes Speisesalz und die Lebensmittelindustrie vertrieben; außerdem werden Produkte mit Kundenlogos regelmäßig geliefert.",
-    "Schneller Service, Qualität und ein erschwinglicher Preis bilden die erklärte Wettbewerbsgrundlage. Das Unternehmen beschreibt etablierte Beziehungen in Europa, Afrika, dem Nahen Osten und Fernost, wobei China als führender Käufer dieser Expansion genannt wird.",
+    "Schneller Service, Qualität und ein erschwinglicher Preis bilden die erklärte Wettbewerbsgrundlage. Das Unternehmen beschreibt etablierte Beziehungen in Europa, Afrika, dem Nahen Osten und Fernost.",
     "Das Dokument beschreibt Salz als eine Industrie, die Ägyptens Wirtschaft unterstützt, und als vielseitiges Mineralprodukt, das zur wichtigsten Exportlinie des Unternehmens wurde. Es nennt außerdem internationales Wachstum, weltweite Geschäftsverbindungen und die Gründung von Niederlassungen im Ausland.",
     "Malta und Bahrain werden als Märkte für Wasserenthärtungssalz-Pellets genannt. Das Dokument hebt zudem Rohsalz für Verarbeiter hervor, dessen Qualität die Verarbeitungsergebnisse verbessern und Einsparungen ermöglichen kann.",
   ],
@@ -424,7 +419,7 @@ const de: HomepageProfileContent = {
   aboutEyebrow: "Über Omega Line Egypt",
   aboutHeading: "Ein verlässlicher ägyptischer Salzpartner für globale Industrien",
   aboutDescription:
-    "Omega Line Egypt produziert, verpackt und exportiert ein breites Sortiment an Salzprodukten. Diszipliniertes Management, gleichbleibende Qualität, moderne Verpackung und professionelle Überwachung unterstützen die Einhaltung chemischer Spezifikationen und Kundenerwartungen.",
+    "Omega Line Egypt exportiert und liefert ein breites Sortiment an Salzprodukten. Diszipliniertes Management, gleichbleibende Qualität, moderne Verpackung und professionelle Überwachung unterstützen die Einhaltung chemischer Spezifikationen und Kundenerwartungen.",
   aboutStrengths: [
     "Chemische Spezifikationen nach Kundenbedarf",
     "Unterschiedliche Körnungen und Verpackungsformate",
@@ -480,8 +475,6 @@ const de: HomepageProfileContent = {
     "Aktuelle technische Unterlagen und Zertifikate sind auf Anfrage erhältlich.",
   ],
   certificatesAction: "Qualitätsdokumente ansehen",
-  certificatesNote:
-    "Die gezeigten Zertifikate stammen aus dem Unternehmensprofil. Fragen Sie unser Team nach aktuell gültigen Kopien und produktspezifischer Dokumentation.",
   packagingEyebrow: "Flexible Verpackung",
   packagingHeading: "Verpackung für Ihre Lieferkette",
   packagingDescription:
@@ -514,9 +507,9 @@ const de: HomepageProfileContent = {
   finalCtaDescription:
     "Senden Sie Ihre technischen und kaufmännischen Anforderungen an Omega Line Egypt und bestimmen Sie gemeinsam das passende Salz, die Spezifikation und die Verpackung.",
   finalCtaAction: "Angebot anfragen",
-  seoTitle: "Omega Line Egypt | Salzherstellung, Verpackung und Export",
+  seoTitle: "Omega Line Egypt | Salzexport und Lieferung",
   seoDescription:
-    "Omega Line Egypt produziert, verpackt und exportiert Salz für Lebensmittel, Industrie, Wasseraufbereitung, Enteisung, Pharmazie, Tierfutter und Spezialanwendungen.",
+    "Omega Line Egypt exportiert und liefert Salz für Lebensmittel, Industrie, Wasseraufbereitung, Enteisung, Pharmazie, Tierfutter und Spezialanwendungen.",
 };
 
 const contentByLocale: Record<Locale, HomepageProfileContent> = { en, fr, de };

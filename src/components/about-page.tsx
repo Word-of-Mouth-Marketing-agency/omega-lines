@@ -55,13 +55,14 @@ const historyMarkets = [
   "Germany", "Netherlands", "Nigeria", "Cameroon", "Côte d’Ivoire", "Ghana",
   "Mauritius", "Equatorial Guinea", "Angola", "Senegal", "Ethiopia",
   "Central African Republic", "Congo", "Turkey", "Togo", "Bahrain", "Malta", "Syria",
+  "Poland", "Kenya", "Rwanda", "Benin", "Tanzania", "Uganda",
 ];
 
 const historyCopy: Record<Locale, { eyebrow: string; heading: string; description: string; markets: string; since: string; download: string; document: string }> = {
   en: {
     eyebrow: "Our story",
     heading: "Salt expertise built since 2000",
-    description: "Omega Line Egypt began working in salt manufacturing, packaging and export around 2000. The company history records thousands of tons supplied annually across Europe, Africa and the Middle East, supported by international quality systems and customer-specific production.",
+    description: "Omega Line Egypt began working in salt export and supply around 2000. The company history records thousands of tons supplied annually across Europe, Africa and the Middle East, supported by international quality systems and customer-specific production.",
     markets: "Markets named in our company history",
     since: "Operating since",
     download: "Download certificate",
@@ -70,7 +71,7 @@ const historyCopy: Record<Locale, { eyebrow: string; heading: string; descriptio
   fr: {
     eyebrow: "Notre histoire",
     heading: "Une expertise du sel développée depuis 2000",
-    description: "Omega Line Egypt exerce dans la fabrication, le conditionnement et l’exportation de sel depuis environ 2000. Son historique fait état de milliers de tonnes fournies chaque année en Europe, en Afrique et au Moyen-Orient, selon des systèmes qualité internationaux et les spécifications des clients.",
+    description: "Omega Line Egypt exerce dans l’exportation et la fourniture de sel depuis environ 2000. Son historique fait état de milliers de tonnes fournies chaque année en Europe, en Afrique et au Moyen-Orient, selon des systèmes qualité internationaux et les spécifications des clients.",
     markets: "Marchés cités dans notre historique",
     since: "En activité depuis",
     download: "Télécharger le certificat",
@@ -79,7 +80,7 @@ const historyCopy: Record<Locale, { eyebrow: string; heading: string; descriptio
   de: {
     eyebrow: "Unsere Geschichte",
     heading: "Salzkompetenz seit 2000",
-    description: "Omega Line Egypt ist seit etwa 2000 in der Herstellung, Verpackung und Ausfuhr von Salz tätig. Die Unternehmensgeschichte nennt jährlich Tausende gelieferte Tonnen in Europa, Afrika und dem Nahen Osten – unterstützt durch internationale Qualitätssysteme und kundenspezifische Produktion.",
+    description: "Omega Line Egypt ist seit etwa 2000 im Export und in der Lieferung von Salz tätig. Die Unternehmensgeschichte nennt jährlich Tausende gelieferte Tonnen in Europa, Afrika und dem Nahen Osten – unterstützt durch internationale Qualitätssysteme und kundenspezifische Produktion.",
     markets: "In unserer Unternehmensgeschichte genannte Märkte",
     since: "Tätig seit",
     download: "Zertifikat herunterladen",
@@ -243,7 +244,7 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
         imageUrl: "/images/about/iso-22000-2018.jpg",
         imageAlt: "Supplied ISO 22000:2018 certificate for Omega Line Egypt",
         documentUrl: "/documents/about/omega-line-iso-22000.pdf",
-        scope: "Supervision of contract manufacturing and packaging of salt according to customers’ specifications.",
+        scope: "ISO 22000:2018 food safety management system certificate.",
         documentDate: "Expiry shown: 10 December 2026",
       },
     ];
