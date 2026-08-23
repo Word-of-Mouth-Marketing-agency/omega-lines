@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { products } from "@/data/products";
+import { productCategories, products } from "@/data/products";
 import { ProductCard } from "./product-card";
 import { RevealSection } from "./reveal-section";
 import { SectionHeading } from "./section-heading";
@@ -14,24 +14,39 @@ export function ProductsPage({ locale }: { locale: Locale }) {
           <div className="max-w-3xl">
             <p className="section-eyebrow">Our Products</p>
             <h1 className="mt-3 text-4xl font-black tracking-normal text-[var(--color-ink)] sm:text-5xl">
-              Ten salt products for food, industry, treatment, and export
+              28 salt products for food, industry, treatment, and export
             </h1>
             <p className="mt-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg">
               Explore Omega Lines&apos; complete product range. Each product is presented directly with its real image, applications, and quote request path.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <ProductCard
-                key={product.slug}
-                locale={locale}
-                slug={product.slug}
-                name={product.name}
-                shortDescription={product.shortDescription}
-                image={product.image}
-              />
-            ))}
+          <div className="mt-14 space-y-16">
+            {productCategories.map((category) => {
+              const categoryProducts = products.filter((product) => product.category === category);
+              return (
+                <section key={category} aria-labelledby={`category-${category.toLowerCase().replaceAll(" ", "-")}`}>
+                  <div className="flex items-end justify-between gap-4 border-b border-[var(--color-border)] pb-4">
+                    <h2 id={`category-${category.toLowerCase().replaceAll(" ", "-")}`} className="text-2xl font-black text-[var(--color-ink)] sm:text-3xl">
+                      {category}
+                    </h2>
+                    <p className="text-sm font-bold text-[var(--color-muted)]">{categoryProducts.length} products</p>
+                  </div>
+                  <div className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {categoryProducts.map((product) => (
+                      <ProductCard
+                        key={product.slug}
+                        locale={locale}
+                        slug={product.slug}
+                        name={product.name}
+                        shortDescription={product.shortDescription}
+                        image={product.image}
+                      />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </div>
       </section>

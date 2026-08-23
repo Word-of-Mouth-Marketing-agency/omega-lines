@@ -11,7 +11,9 @@ export function ProductDetail({ locale, slug }: { locale: Locale; slug: string }
   const product = getProduct(slug);
   if (!product) notFound();
 
-  const relatedProducts = products.filter((item) => item.slug !== slug).slice(0, 3);
+  const relatedProducts = products
+    .filter((item) => item.slug !== slug && item.category === product.category)
+    .slice(0, 3);
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -47,6 +49,7 @@ export function ProductDetail({ locale, slug }: { locale: Locale; slug: string }
 
           <div>
             <p className="text-xs font-black uppercase tracking-[0.16em] text-[var(--color-primary)]">Omega Lines Product</p>
+            <p className="mt-3 text-sm font-bold text-[var(--color-primary)]">{product.category}</p>
             <h1 className="mt-2 text-3xl font-black text-[var(--color-ink)] sm:text-4xl">{product.name}</h1>
             <p className="mt-4 text-base leading-7 text-[var(--color-muted)]">{product.shortDescription}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

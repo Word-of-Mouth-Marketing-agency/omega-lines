@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   return buildMetadata({
     title: "Salt Products | Omega Lines",
-    description: "Explore Omega Lines' complete range of ten salt products for food, industry, water treatment, de-icing, textiles, and animal nutrition.",
+    description: "Explore 28 Omega Lines salt products for food, industry, water treatment, de-icing, pharmaceuticals, textiles, and animal nutrition.",
     locale,
     path: "/products",
   });

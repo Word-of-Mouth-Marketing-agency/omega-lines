@@ -8,6 +8,7 @@ type MetadataInput = {
   description: string;
   locale: Locale;
   path?: string;
+  image?: { url: string; alt: string; width: number; height: number };
 };
 
 export function absoluteUrl(path = ""): string {
@@ -24,6 +25,7 @@ export function buildMetadata({
   description,
   locale,
   path = "/",
+  image,
 }: MetadataInput): Metadata {
   const canonicalPath = localizedPath(locale, path);
   const languages = Object.fromEntries(
@@ -44,6 +46,13 @@ export function buildMetadata({
       siteName: siteConfig.name,
       type: "website",
       url: absoluteUrl(canonicalPath),
+      images: image ? [{ ...image, url: absoluteUrl(image.url) }] : undefined,
+    },
+    twitter: {
+      card: image ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: image ? [absoluteUrl(image.url)] : undefined,
     },
   };
 }

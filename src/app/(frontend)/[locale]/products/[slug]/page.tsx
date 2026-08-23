@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: product?.shortDescription ?? "Product detail page.",
     locale,
     path: `/products/${slug}`,
+    image: product?.image,
   });
 }
 

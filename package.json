@@ -22,7 +22,8 @@
     "homepage:sync": "node --env-file=.env.local --import tsx src/payload/sync-homepage-profile.ts",
     "seed": "node --env-file=.env.local --import tsx src/payload/seed.ts",
     "about:sync": "node --env-file=.env.local --import tsx src/payload/sync-about-profile.ts",
-    "products:import": "node --env-file=.env.local --import tsx src/payload/import-product-assets.ts"
+    "products:import": "node --env-file=.env.local --import tsx src/payload/import-product-assets.ts",
+    "products:static-assets": "node scripts/import-static-product-assets.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
