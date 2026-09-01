@@ -4,7 +4,7 @@ import {
   getHeaderNavigation,
   getSocialLinks,
 } from "@/lib/cms";
-import { productCategories } from "@/data/products";
+import { productCategories, products } from "@/data/products";
 import { primaryNav } from "@/lib/site";
 import { SiteHeaderClient } from "./site-header-client";
 
@@ -51,14 +51,19 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
       url: item.url as string,
     })) ?? [];
 
+  const productsByCategory = productCategories.map((category) => ({
+    categorySlug: category.toLowerCase().replaceAll(" ", "-"),
+    name: category,
+    products: products
+      .filter((p) => p.category === category)
+      .map((p) => ({ slug: p.slug, name: p.name })),
+  }));
+
   return (
     <SiteHeaderClient
       locale={locale}
       navItems={navItems}
-      productCategories={productCategories.map((category) => ({
-        slug: category.toLowerCase().replaceAll(" ", "-"),
-        name: category,
-      }))}
+      productsByCategory={productsByCategory}
       contact={{
         email: contact?.email ?? "export@omega-lines.local",
         phone: contact?.phone ?? "+00 000 000 0000",

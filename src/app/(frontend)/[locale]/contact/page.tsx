@@ -11,8 +11,8 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   return buildMetadata({
-    title: "Contact Us | Omega Lines",
-    description: "Get in touch with Omega Lines. Submit an inquiry about our salt products and our team will respond promptly.",
+    title: "Contact Us | Omega Line",
+    description: "Get in touch with Omega Line. Submit an inquiry about our salt products and our team will respond promptly.",
     locale,
     path: "/contact",
   });

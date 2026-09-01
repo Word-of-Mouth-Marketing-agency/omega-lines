@@ -17,7 +17,7 @@ export const SiteSettings: GlobalConfig = {
       type: "text",
       required: true,
       localized: true,
-      defaultValue: "Omega Lines",
+      defaultValue: "Omega Line",
     },
     {
       name: "siteDescription",

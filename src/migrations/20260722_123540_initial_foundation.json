@@ -2575,7 +2575,7 @@
           "type": "varchar",
           "primaryKey": false,
           "notNull": true,
-          "default": "'Omega Lines'"
+          "default": "'Omega Line'"
         },
         "site_description": {
           "name": "site_description",

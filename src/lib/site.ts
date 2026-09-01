@@ -1,10 +1,10 @@
 import type { Locale } from "@/i18n/routing";
 
 export const siteConfig = {
-  name: "Omega Lines",
+  name: "Omega Line",
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description: "Placeholder B2B salt product catalog foundation.",
-  organizationName: "Omega Lines",
+  organizationName: "Omega Line",
 } as const;
 
 export const primaryNav = [
@@ -27,7 +27,7 @@ export const pageContent: Record<
   }
 > = {
   home: {
-    title: "Omega Lines catalog foundation",
+    title: "Omega Line catalog foundation",
     kicker: "Catalog placeholder",
     description:
       "A multilingual, CMS-backed B2B catalog shell is ready for verified client content.",
@@ -35,7 +35,7 @@ export const pageContent: Record<
       "Featured products and categories will appear here after CMS content is approved.",
   },
   about: {
-    title: "About Omega Lines",
+    title: "About Omega Line",
     kicker: "Company placeholder",
     description:
       "This page is reserved for verified company background, capabilities, and approvals.",

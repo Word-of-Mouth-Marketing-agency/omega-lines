@@ -17,7 +17,7 @@ export function ProductsPage({ locale }: { locale: Locale }) {
               28 salt products for food, industry, treatment, and export
             </h1>
             <p className="mt-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg">
-              Explore Omega Lines&apos; complete product range. Each product is presented directly with its real image, applications, and quote request path.
+              Explore Omega Line&apos;s complete product range. Each product is presented directly with its real image, applications, and quote request path.
             </p>
           </div>
 

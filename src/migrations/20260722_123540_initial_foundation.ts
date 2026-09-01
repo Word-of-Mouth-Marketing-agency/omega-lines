@@ -214,7 +214,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   );
 
   CREATE TABLE "site_settings_locales" (
-	"site_name" varchar DEFAULT 'Omega Lines' NOT NULL,
+  "site_name" varchar DEFAULT 'Omega Line' NOT NULL,
 	"site_description" varchar,
 	"seo_title" varchar,
 	"seo_description" varchar,

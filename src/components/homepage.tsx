@@ -347,7 +347,7 @@ export async function Homepage({ locale }: { locale: Locale }) {
         <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-32 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
           <HeroAnimation>
             <h1 className="max-w-4xl text-5xl font-black uppercase leading-[0.9] tracking-[-0.055em] text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.4)] sm:text-7xl lg:text-8xl">
-              Omega <span className="text-blue-300">Lines</span>
+              Omega <span className="text-blue-300">Line</span>
             </h1>
             <p className="mt-5 max-w-xl border-l-2 border-blue-300 pl-4 text-base font-semibold leading-7 text-white/90 sm:text-lg">
               {profile.heroDescription}
@@ -485,7 +485,7 @@ export async function Homepage({ locale }: { locale: Locale }) {
         <SectionIntro
           eyebrow="Salt Products"
           title="Our Complete Salt Product Range"
-          description="Explore ten Omega Lines products directly, each with its real product image, applications, and quote request path."
+          description="Explore ten Omega Line products directly, each with its real product image, applications, and quote request path."
         />
         <div className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8">
           <ProductCarousel items={products} locale={locale} />
@@ -535,9 +535,6 @@ export async function Homepage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
-              <CtaLink href="/gallery" label={profile.certificatesAction} locale={locale} variant="secondary" />
-            </div>
           </Reveal>
 
           <Reveal direction="right" distance={30} delay={0.1}>

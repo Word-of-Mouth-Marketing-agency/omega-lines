@@ -4,6 +4,7 @@ import Image from "next/image";
 import {
   ArrowRight,
   ChevronDown,
+  ChevronRight,
   Mail,
   MapPin,
   Menu,
@@ -33,9 +34,10 @@ type NavItem = {
   label: string;
 };
 
-type ProductCategoryLink = {
-  slug: string;
+type ProductCategoryGroup = {
+  categorySlug: string;
   name: string;
+  products: Array<{ slug: string; name: string }>;
 };
 
 type SocialLink = {
@@ -46,7 +48,7 @@ type SocialLink = {
 type SiteHeaderClientProps = {
   locale: Locale;
   navItems: NavItem[];
-  productCategories: ProductCategoryLink[];
+  productsByCategory: ProductCategoryGroup[];
   contact: {
     email: string;
     phone: string;
@@ -91,13 +93,15 @@ const productNavigationLabels: Record<Locale, { heading: string; viewAll: string
 export function SiteHeaderClient({
   locale,
   navItems,
-  productCategories,
+  productsByCategory,
   contact,
   socialLinks,
 }: SiteHeaderClientProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(null);
+  const [submenuSide, setSubmenuSide] = useState<"left" | "right">("right");
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const mounted = useSyncExternalStore(
@@ -114,6 +118,7 @@ export function SiteHeaderClient({
   const drawerRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const productsMenuRef = useRef<HTMLLIElement>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const productLabels = productNavigationLabels[locale];
 
   useEffect(() => {
@@ -128,6 +133,7 @@ export function SiteHeaderClient({
     if (prevPathname.current !== pathname) {
       setMenuOpen(false);
       setProductsOpen(false);
+      setActiveCategorySlug(null);
       setMobileProductsOpen(false);
       prevPathname.current = pathname;
     }
@@ -139,6 +145,7 @@ export function SiteHeaderClient({
     const handleEscape = (event: globalThis.KeyboardEvent) => {
       if (event.key !== "Escape") return;
       setProductsOpen(false);
+      setActiveCategorySlug(null);
       (document.getElementById(productsTriggerId) as HTMLAnchorElement | null)?.focus();
     };
 
@@ -196,6 +203,7 @@ export function SiteHeaderClient({
     const nextTarget = event.relatedTarget as Node | null;
     if (!nextTarget || !productsMenuRef.current?.contains(nextTarget)) {
       setProductsOpen(false);
+      setActiveCategorySlug(null);
     }
   }, []);
 
@@ -203,11 +211,107 @@ export function SiteHeaderClient({
     if (event.key === "ArrowDown") {
       event.preventDefault();
       setProductsOpen(true);
+      setActiveCategorySlug(null);
       requestAnimationFrame(() => {
         (document.getElementById(firstProductId) as HTMLAnchorElement | null)?.focus();
       });
     }
   }, [firstProductId]);
+
+  const clearCloseTimeout = useCallback(() => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  }, []);
+
+  const openCategory = useCallback((categorySlug: string) => {
+    clearCloseTimeout();
+    const el = document.getElementById(`category-${categorySlug}`);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      setSubmenuSide(rect.right + 320 > window.innerWidth ? "left" : "right");
+    }
+    setActiveCategorySlug(categorySlug);
+  }, [clearCloseTimeout]);
+
+  const scheduleCloseCategory = useCallback(() => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveCategorySlug(null);
+    }, 80);
+  }, []);
+
+  const handleCategoryKeyDown = useCallback((
+    event: KeyboardEvent<HTMLAnchorElement>,
+    categorySlug: string,
+    index: number,
+    hasSubmenu: boolean,
+  ) => {
+    switch (event.key) {
+      case "ArrowRight": {
+        if (hasSubmenu) {
+          event.preventDefault();
+          openCategory(categorySlug);
+          requestAnimationFrame(() => {
+            document.getElementById(`submenu-${categorySlug}-0`)?.focus();
+          });
+        }
+        break;
+      }
+      case "ArrowDown": {
+        event.preventDefault();
+        const next = productsByCategory[index + 1];
+        if (next) document.getElementById(`category-${next.categorySlug}`)?.focus();
+        break;
+      }
+      case "ArrowUp": {
+        event.preventDefault();
+        const prev = productsByCategory[index - 1];
+        if (prev) document.getElementById(`category-${prev.categorySlug}`)?.focus();
+        break;
+      }
+      case "Escape": {
+        setProductsOpen(false);
+        setActiveCategorySlug(null);
+        triggerRef.current?.focus();
+        break;
+      }
+    }
+  }, [productsByCategory, openCategory, triggerRef]);
+
+  const handleSubmenuKeyDown = useCallback((
+    event: KeyboardEvent<HTMLAnchorElement>,
+    categorySlug: string,
+    productIndex: number,
+  ) => {
+    switch (event.key) {
+      case "ArrowDown": {
+        event.preventDefault();
+        document.getElementById(`submenu-${categorySlug}-${productIndex + 1}`)?.focus();
+        break;
+      }
+      case "ArrowUp": {
+        event.preventDefault();
+        if (productIndex === 0) {
+          document.getElementById(`category-${categorySlug}`)?.focus();
+        } else {
+          document.getElementById(`submenu-${categorySlug}-${productIndex - 1}`)?.focus();
+        }
+        break;
+      }
+      case "ArrowLeft": {
+        event.preventDefault();
+        document.getElementById(`category-${categorySlug}`)?.focus();
+        break;
+      }
+      case "Escape": {
+        setProductsOpen(false);
+        setActiveCategorySlug(null);
+        triggerRef.current?.focus();
+        break;
+      }
+    }
+  }, [triggerRef]);
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md">
@@ -276,8 +380,15 @@ export function SiteHeaderClient({
                       key={item.href}
                       ref={productsMenuRef}
                       className="relative"
-                      onMouseEnter={() => setProductsOpen(true)}
-                      onMouseLeave={() => setProductsOpen(false)}
+                      onMouseEnter={() => {
+                        setProductsOpen(true);
+                        clearCloseTimeout();
+                      }}
+                      onMouseLeave={() => {
+                        setProductsOpen(false);
+                        setActiveCategorySlug(null);
+                        clearCloseTimeout();
+                      }}
                       onFocusCapture={() => setProductsOpen(true)}
                       onBlurCapture={closeProductsMenuWhenFocusLeaves}
                     >
@@ -307,50 +418,107 @@ export function SiteHeaderClient({
 
                       <div
                         id={desktopProductsId}
+                        role="menu"
                         aria-label={productLabels.heading}
-                        className={`absolute left-1/2 top-full z-50 w-[34rem] -translate-x-1/2 pt-2 transition duration-150 ${
+                        className={`absolute left-0 top-full z-50 pt-2 transition duration-150 ease-out ${
                           productsOpen
                             ? "visible translate-y-0 opacity-100"
                             : "invisible -translate-y-1 opacity-0"
                         }`}
                       >
-                        <div className="border border-[var(--color-border)] bg-white p-3 shadow-[0_20px_55px_rgba(10,63,122,0.18)]">
-                          <div className="border-b border-[var(--color-border)] px-3 pb-3 pt-1">
-                            <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--color-muted)]">
-                              {productLabels.heading}
-                            </p>
-                          </div>
-
-                          {productCategories.length > 0 ? (
-                            <div className="grid grid-cols-2 gap-1 py-2">
-                              {productCategories.map((category, index) => (
-                                <Link
-                                  key={category.slug}
-                                  id={index === 0 ? firstProductId : undefined}
-                                  href={`/products#category-${category.slug}`}
-                                  locale={locale}
-                                  onClick={() => setProductsOpen(false)}
-                                  className="group flex min-h-11 items-center justify-between gap-3 px-3 py-2 text-sm font-bold text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
-                                >
-                                  <span>{category.name}</span>
-                                  <ArrowRight aria-hidden="true" size={14} className="shrink-0 opacity-45 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
-                                </Link>
-                              ))}
+                        <div className="flex rounded-lg border border-[var(--color-border)] bg-white shadow-[0_16px_48px_rgba(10,63,122,0.14),0_2px_8px_rgba(10,63,122,0.06)]">
+                          {/* Parent column — single vertical list */}
+                          <div className="w-[296px]">
+                            <div className="border-b border-[var(--color-border)] px-4 pb-2.5 pt-3">
+                              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[var(--color-muted)]">
+                                {productLabels.heading}
+                              </p>
                             </div>
-                          ) : (
-                            <p className="px-3 py-5 text-sm text-[var(--color-muted)]">{productLabels.empty}</p>
-                          )}
 
-                          <div className="border-t border-[var(--color-border)] pt-2">
-                            <Link
-                              href="/products"
-                              locale={locale}
-                              onClick={() => setProductsOpen(false)}
-                              className="flex min-h-11 items-center justify-between px-3 text-sm font-black text-[var(--color-primary)] transition-colors hover:bg-[var(--color-soft)]"
-                            >
-                              {productLabels.viewAll}
-                              <ArrowRight aria-hidden="true" size={15} />
-                            </Link>
+                            {productsByCategory.length > 0 ? (
+                              <ul className="py-1.5" role="none">
+                                {productsByCategory.map((cat, index) => (
+                                  <li
+                                    key={cat.categorySlug}
+                                    id={`category-${cat.categorySlug}`}
+                                    className="relative"
+                                    role="none"
+                                    onMouseEnter={() => openCategory(cat.categorySlug)}
+                                    onMouseLeave={scheduleCloseCategory}
+                                  >
+                                    <Link
+                                      id={index === 0 ? firstProductId : undefined}
+                                      href={`/products#category-${cat.categorySlug}`}
+                                      locale={locale}
+                                      role="menuitem"
+                                      onClick={() => setProductsOpen(false)}
+                                      onKeyDown={(e) => handleCategoryKeyDown(e, cat.categorySlug, index, cat.products.length > 0)}
+                                      className={`flex items-center justify-between px-4 py-2.5 text-[13px] font-semibold transition-colors duration-150 ${
+                                        activeCategorySlug === cat.categorySlug
+                                          ? "bg-[var(--color-soft)] text-[var(--color-primary)]"
+                                          : "text-[var(--color-ink)] hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
+                                      } focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--color-primary)]`}
+                                      tabIndex={productsOpen ? 0 : -1}
+                                    >
+                                      <span className="truncate">{cat.name}</span>
+                                      {cat.products.length > 0 && (
+                                        <ChevronRight aria-hidden="true" size={14} className={`shrink-0 transition-transform duration-150 ${activeCategorySlug === cat.categorySlug ? "text-[var(--color-primary)]" : "text-[var(--color-muted)]"}`} />
+                                      )}
+                                    </Link>
+
+                                    {/* Submenu — products for this category */}
+                                    {activeCategorySlug === cat.categorySlug && cat.products.length > 0 && (
+                                      <div
+                                        id={`submenu-${cat.categorySlug}`}
+                                        role="menu"
+                                        className={`absolute top-0 z-50 w-[320px] rounded-lg border border-[var(--color-border)] bg-white shadow-[0_16px_48px_rgba(10,63,122,0.14),0_2px_8px_rgba(10,63,122,0.06)] ${
+                                          submenuSide === "right" ? "left-full -ml-px" : "right-full -mr-px"
+                                        }`}
+                                        onMouseEnter={clearCloseTimeout}
+                                        onMouseLeave={scheduleCloseCategory}
+                                      >
+                                        <div className="border-b border-[var(--color-border)] px-4 pb-2 pt-3">
+                                          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[var(--color-muted)]">{cat.name}</p>
+                                        </div>
+                                        <ul className="max-h-[360px] overflow-y-auto py-1.5" role="none">
+                                          {cat.products.map((product, i) => (
+                                            <li key={product.slug} role="none">
+                                              <Link
+                                                id={`submenu-${cat.categorySlug}-${i}`}
+                                                href={`/products/${product.slug}`}
+                                                locale={locale}
+                                                role="menuitem"
+                                                onClick={() => setProductsOpen(false)}
+                                                onKeyDown={(e) => handleSubmenuKeyDown(e, cat.categorySlug, i)}
+                                                className="block px-4 py-2 text-[13px] leading-snug text-[var(--color-ink)] transition-colors duration-150 hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--color-primary)]"
+                                                tabIndex={-1}
+                                              >
+                                                {product.name}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <p className="px-4 py-5 text-[13px] text-[var(--color-muted)]">{productLabels.empty}</p>
+                            )}
+
+                            <div className="border-t border-[var(--color-border)]">
+                              <Link
+                                href="/products"
+                                locale={locale}
+                                role="menuitem"
+                                onClick={() => setProductsOpen(false)}
+                                className="flex items-center justify-between px-4 py-2.5 text-[13px] font-bold text-[var(--color-primary)] transition-colors duration-150 hover:bg-[var(--color-soft)] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--color-primary)]"
+                              >
+                                {productLabels.viewAll}
+                                <ArrowRight aria-hidden="true" size={14} />
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -493,16 +661,17 @@ export function SiteHeaderClient({
                           >
                             {productLabels.viewAll}
                           </Link>
-                          {productCategories.map((category) => (
-                            <Link
-                              key={category.slug}
-                              href={`/products#category-${category.slug}`}
-                              locale={locale}
-                              onClick={closeDrawer}
-                              className="flex min-h-11 items-center px-3 text-sm font-semibold text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
-                            >
-                              {category.name}
-                            </Link>
+                          {productsByCategory.map((cat) => (
+                            <div key={cat.categorySlug}>
+                              <Link
+                                href={`/products#category-${cat.categorySlug}`}
+                                locale={locale}
+                                onClick={closeDrawer}
+                                className="flex min-h-11 items-center px-3 text-sm font-semibold text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] hover:text-[var(--color-primary)]"
+                              >
+                                {cat.name}
+                              </Link>
+                            </div>
                           ))}
                         </div>
                       </li>

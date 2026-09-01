@@ -51,7 +51,6 @@ export type HomepageProfileContent = {
   qualityHeading: string;
   qualityDescription: string;
   qualityBenefits: string[];
-  certificatesAction: string;
   packagingEyebrow: string;
   packagingHeading: string;
   packagingDescription: string;
@@ -77,7 +76,7 @@ export type HomepageProfileContent = {
 
 const en: HomepageProfileContent = {
   heroEyebrow: "Omega Line Egypt",
-  heroHeading: "Omega Lines",
+  heroHeading: "Omega Line",
   heroDescription: "Egyptian salt. Ready for the world.",
   primaryCtaLabel: "Explore Products",
   secondaryCtaLabel: "Request a Specification Quote",
@@ -88,7 +87,7 @@ const en: HomepageProfileContent = {
     "Food, industrial and specialized uses",
   ],
   capabilitiesLabel: "Omega Line Egypt capabilities",
-  welcomeEyebrow: "Welcome to Omega Lines",
+  welcomeEyebrow: "Welcome to Omega Line",
   welcomeHeading: "Built on Salt. Growing With the World.",
   welcomeParagraphs: [
     "Professional and skilled staff have supported Omega Line Egypt’s success and expansion over many years. Continued demand from African buyers helped make salt supply the company’s central focus.",
@@ -189,7 +188,6 @@ const en: HomepageProfileContent = {
     "Food and industrial grades are matched to their intended applications.",
     "Current technical documents and certificate copies are available on request.",
   ],
-  certificatesAction: "View Quality Documents",
   packagingEyebrow: "Flexible packaging",
   packagingHeading: "Packaging Built Around Your Supply Chain",
   packagingDescription:
@@ -257,7 +255,7 @@ const en: HomepageProfileContent = {
 const fr: HomepageProfileContent = {
   ...en,
   heroEyebrow: "Omega Line Egypt",
-  heroHeading: "Omega Lines",
+  heroHeading: "Omega Line",
   heroDescription: "Le sel égyptien. Prêt pour le monde.",
   primaryCtaLabel: "Découvrir les produits",
   secondaryCtaLabel: "Demander un devis technique",
@@ -268,7 +266,7 @@ const fr: HomepageProfileContent = {
     "Usages alimentaires, industriels et spécialisés",
   ],
   capabilitiesLabel: "Capacités d'Omega Line Egypt",
-  welcomeEyebrow: "Bienvenue chez Omega Lines",
+  welcomeEyebrow: "Bienvenue chez Omega Line",
   welcomeHeading: "Fondée sur le sel. En croissance avec le monde.",
   welcomeParagraphs: [
     "Un personnel professionnel et qualifié soutient depuis de nombreuses années la réussite et l’expansion d’Omega Line Egypt. La demande continue des acheteurs africains a placé l’approvisionnement en sel au centre de l’activité.",
@@ -345,7 +343,6 @@ const fr: HomepageProfileContent = {
     "Les qualités alimentaires et industrielles sont adaptées à leur application.",
     "Les documents techniques et certificats à jour sont disponibles sur demande.",
   ],
-  certificatesAction: "Voir les documents qualité",
   packagingEyebrow: "Conditionnement flexible",
   packagingHeading: "Un emballage adapté à votre chaîne logistique",
   packagingDescription:
@@ -386,7 +383,7 @@ const fr: HomepageProfileContent = {
 const de: HomepageProfileContent = {
   ...en,
   heroEyebrow: "Omega Line Egypt",
-  heroHeading: "Omega Lines",
+  heroHeading: "Omega Line",
   heroDescription: "Ägyptisches Salz. Bereit für die Welt.",
   primaryCtaLabel: "Produkte entdecken",
   secondaryCtaLabel: "Spezifikationsangebot anfragen",
@@ -397,7 +394,7 @@ const de: HomepageProfileContent = {
     "Lebensmittel-, Industrie- und Spezialanwendungen",
   ],
   capabilitiesLabel: "Leistungsbereiche von Omega Line Egypt",
-  welcomeEyebrow: "Willkommen bei Omega Lines",
+  welcomeEyebrow: "Willkommen bei Omega Line",
   welcomeHeading: "Auf Salz aufgebaut. Mit der Welt gewachsen.",
   welcomeParagraphs: [
     "Professionelle und qualifizierte Mitarbeiter unterstützen seit vielen Jahren den Erfolg und die Expansion von Omega Line Egypt. Die anhaltende Nachfrage afrikanischer Käufer machte die Salzversorgung zum Schwerpunkt des Unternehmens.",
@@ -474,7 +471,6 @@ const de: HomepageProfileContent = {
     "Lebensmittel- und Industriequalitäten werden auf ihre Anwendung abgestimmt.",
     "Aktuelle technische Unterlagen und Zertifikate sind auf Anfrage erhältlich.",
   ],
-  certificatesAction: "Qualitätsdokumente ansehen",
   packagingEyebrow: "Flexible Verpackung",
   packagingHeading: "Verpackung für Ihre Lieferkette",
   packagingDescription:

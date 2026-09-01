@@ -34,10 +34,11 @@ export function ProductCarousel({ items, locale }: { items: CatalogProduct[]; lo
 
   useEffect(() => {
     if (!emblaApi) return;
-    updateButtons();
+    const raf = requestAnimationFrame(updateButtons);
     emblaApi.on("select", updateButtons);
     emblaApi.on("reInit", updateButtons);
     return () => {
+      cancelAnimationFrame(raf);
       emblaApi.off("select", updateButtons);
       emblaApi.off("reInit", updateButtons);
     };

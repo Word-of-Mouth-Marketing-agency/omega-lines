@@ -12,10 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const seo = homepage?.seo;
 
   return buildMetadata({
-    title: seo?.title ?? "Omega Lines salt products and export foundation",
+    title: seo?.title ?? "Omega Line salt products and export foundation",
     description:
       seo?.description ??
-      "CMS-backed Omega Lines homepage foundation for salt products, export information, gallery previews, and quote inquiries.",
+      "CMS-backed Omega Line homepage foundation for salt products, export information, gallery previews, and quote inquiries.",
     locale: "en",
     path: "/",
   });

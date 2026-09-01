@@ -139,11 +139,11 @@ const galleryAssets = [
 
 export const omegaGalleryItems = galleryAssets.map(([id, category], index) => ({
   id: `omega-${id}`,
-  title: `Omega Lines gallery image ${index + 1}`,
-  description: "Omega Lines production, packaging, and shipping operations.",
+  title: `Omega Line gallery image ${index + 1}`,
+  description: "Omega Line production, packaging, and shipping operations.",
   image: {
     url: `/images/gallery/omega-media/omega-gallery-${id}.webp`,
-    alt: `Omega Lines production and logistics gallery image ${index + 1}`,
+    alt: `Omega Line production and logistics gallery image ${index + 1}`,
   },
   category,
   sortOrder: (index + 1) * 10,

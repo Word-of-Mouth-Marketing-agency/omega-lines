@@ -108,7 +108,7 @@ export async function importProducts({ destroy = true }: { destroy?: boolean } =
         featured: index < 8,
         active: true,
         sortOrder: (index + 1) * 10,
-        seo: { title: `${product.name} | Omega Lines`, description: product.shortDescription, image: mediaIds[0], noIndex: false },
+        seo: { title: `${product.name} | Omega Line`, description: product.shortDescription, image: mediaIds[0], noIndex: false },
       };
       if (existing.docs[0]) {
         await payload.update({ collection: "products", id: existing.docs[0].id, locale: "en", data });

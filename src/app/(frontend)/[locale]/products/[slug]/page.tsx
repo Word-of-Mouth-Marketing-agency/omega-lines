@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale, slug } = await params;
   const product = getProduct(slug);
   return buildMetadata({
-    title: product?.name ? `${product.name} | Omega Lines` : "Product detail | Omega Lines",
+    title: product?.name ? `${product.name} | Omega Line` : "Product detail | Omega Line",
     description: product?.shortDescription ?? "Product detail page.",
     locale,
     path: `/products/${slug}`,

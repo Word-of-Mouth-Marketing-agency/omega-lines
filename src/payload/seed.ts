@@ -24,7 +24,7 @@ async function seedGlobals(payload: Awaited<ReturnType<typeof getPayloadClient>>
   await payload.updateGlobal({
     slug: "site-settings",
     data: {
-      siteName: "Omega Lines",
+      siteName: "Omega Line",
       siteDescription: "Placeholder B2B salt catalog foundation.",
     },
   });
@@ -46,7 +46,7 @@ async function seedGlobals(payload: Awaited<ReturnType<typeof getPayloadClient>>
     slug: "footer",
     data: {
       summary:
-        "Development placeholder footer. Replace with verified Omega Lines company description before production use.",
+        "Development placeholder footer. Replace with verified Omega Line company description before production use.",
     },
   });
 

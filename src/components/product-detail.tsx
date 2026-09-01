@@ -20,7 +20,7 @@ export function ProductDetail({ locale, slug }: { locale: Locale; slug: string }
     name: product.name,
     description: product.shortDescription,
     image: product.image.url,
-    brand: { "@type": "Brand", name: "Omega Lines" },
+    brand: { "@type": "Brand", name: "Omega Line" },
   };
 
   return (
@@ -48,7 +48,7 @@ export function ProductDetail({ locale, slug }: { locale: Locale; slug: string }
           </div>
 
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-[var(--color-primary)]">Omega Lines Product</p>
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-[var(--color-primary)]">Omega Line Product</p>
             <p className="mt-3 text-sm font-bold text-[var(--color-primary)]">{product.category}</p>
             <h1 className="mt-2 text-3xl font-black text-[var(--color-ink)] sm:text-4xl">{product.name}</h1>
             <p className="mt-4 text-base leading-7 text-[var(--color-muted)]">{product.shortDescription}</p>
@@ -90,7 +90,7 @@ export function ProductDetail({ locale, slug }: { locale: Locale; slug: string }
       <RevealSection className="section-band" as="section">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="section-eyebrow">Explore More</p>
-          <h2 className="mt-2 text-2xl font-black text-[var(--color-ink)]">Other Omega Lines Products</h2>
+          <h2 className="mt-2 text-2xl font-black text-[var(--color-ink)]">Other Omega Line Products</h2>
           <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {relatedProducts.map((item) => (
               <ProductCard key={item.slug} slug={item.slug} name={item.name} shortDescription={item.shortDescription} image={item.image} locale={locale} />
