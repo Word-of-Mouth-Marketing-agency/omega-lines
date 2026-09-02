@@ -6,6 +6,8 @@ import {
   getHomepage,
 } from "@/lib/cms";
 import { products } from "@/data/products";
+import { homepageGalleryImages } from "@/data/gallery-images";
+import { certificates as certificateData } from "@/data/certificates";
 import {
   getHomepageProfileContent,
   isPlaceholderCollection,
@@ -240,20 +242,12 @@ function CertificateGallery({
 
   const certificateMedia = cmsCertificates?.length
     ? cmsCertificates
-    : [
-        {
-          url: "/images/home/iso-9001-2015.jpg",
-          alt: "ISO 9001:2015 certificate shown in the Omega Line Egypt profile",
-          width: 399,
-          height: 561,
-        },
-        {
-          url: "/images/home/iso-22000-2018.jpg",
-          alt: "ISO 22000:2018 certificate shown in the Omega Line Egypt profile",
-          width: 1242,
-          height: 1680,
-        },
-      ];
+    : certificateData.map((cert) => ({
+        url: cert.imageUrl,
+        alt: cert.imageAlt,
+        width: 700,
+        height: 950,
+      }));
 
   return (
     <div className="grid gap-5 sm:grid-cols-2">
@@ -283,7 +277,16 @@ export async function Homepage({ locale }: { locale: Locale }) {
   ]);
 
   const selectedGallery = homepage?.featuredGalleryItems?.filter(isGallery) ?? [];
-  const galleryItems = selectedGallery.length > 0 ? selectedGallery : (activeGallery as GalleryLike[]);
+  const staticGalleryFallback = homepageGalleryImages.map((img) => ({
+    id: img.id,
+    title: img.alt,
+    description: img.alt,
+    image: { url: img.src, alt: img.alt, width: img.width, height: img.height },
+  }));
+  const galleryItems =
+    selectedGallery.length > 0
+      ? selectedGallery
+      : (activeGallery.length > 0 ? activeGallery : staticGalleryFallback) as GalleryLike[];
 
   const cmsIndustries = homepage?.industries?.filter((item) => item.title) ?? [];
   const industries = isPlaceholderCollection(cmsIndustries, (item) => item.description)

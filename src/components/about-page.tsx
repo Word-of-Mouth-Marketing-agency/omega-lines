@@ -26,6 +26,7 @@ import {
   getAboutProfileContent,
 } from "@/lib/about-profile-content";
 import type { AboutPage } from "@/payload-types";
+import { certificates as certificateData } from "@/data/certificates";
 import { Reveal, StaggerGrid } from "./gsap-reveal";
 import { InnerPageHero } from "./inner-page-hero";
 
@@ -226,28 +227,10 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
   const overviewImageUrl = overviewImage?.url ?? "/images/home/about-salt.webp";
   const overviewImageAlt = overviewImage?.alt ?? "Coarse salt crystals in a wooden bowl";
 
-  const certificates: CertificateView[] = [
-      {
-        id: "iso-9001-2015",
-        title: "ISO 9001:2015",
-        description: profile.certificatesDescription,
-        imageUrl: "/images/about/iso-9001-2015.jpg",
-        imageAlt: "Supplied ISO 9001:2015 certificate for Omega Line Egypt",
-        documentUrl: "/documents/about/omega-line-iso-9001.pdf",
-        scope: "Export of salt.",
-        documentDate: "Expiry shown: 2 April 2025",
-      },
-      {
-        id: "iso-22000-2018",
-        title: "ISO 22000:2018",
-        description: profile.certificatesDescription,
-        imageUrl: "/images/about/iso-22000-2018.jpg",
-        imageAlt: "Supplied ISO 22000:2018 certificate for Omega Line Egypt",
-        documentUrl: "/documents/about/omega-line-iso-22000.pdf",
-        scope: "ISO 22000:2018 food safety management system certificate.",
-        documentDate: "Expiry shown: 10 December 2026",
-      },
-    ];
+  const certificates: CertificateView[] = certificateData.map((cert) => ({
+      ...cert,
+      description: profile.certificatesDescription,
+    }));
 
   const missionHeading = profile.missionHeading;
   const missionDescription = profile.missionDescription;
