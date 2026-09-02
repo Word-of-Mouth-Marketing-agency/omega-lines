@@ -61,9 +61,9 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
       navItems={navItems}
       productsByCategory={productsByCategory}
       contact={{
-        email: contact?.emailAddresses?.[0]?.email ?? "export@omega-lines.local",
-        phone: contact?.telephoneNumbers?.[0]?.number ?? "+00 000 000 0000",
-        location: contact?.address ?? "Location pending verification",
+        email: contact?.emailAddresses?.[0]?.email ?? "info@omegalineegypt.com",
+        phone: contact?.telephoneNumbers?.[0]?.number ?? "+2 011 1 550 85 45",
+        location: contact?.address ?? "16 Rabaa Investment Buildings, Nozha St., Nasr City, Cairo – Egypt",
       }}
       socialLinks={socialLinks}
     />

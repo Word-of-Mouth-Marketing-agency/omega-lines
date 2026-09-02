@@ -25,7 +25,7 @@ async function seedGlobals(payload: Awaited<ReturnType<typeof getPayloadClient>>
     slug: "site-settings",
     data: {
       siteName: "Omega Line",
-      siteDescription: "Placeholder B2B salt catalog foundation.",
+      siteDescription: "Omega Line Egypt — premium salt products for food, industrial, and pharmaceutical applications.",
     },
   });
 
@@ -46,7 +46,7 @@ async function seedGlobals(payload: Awaited<ReturnType<typeof getPayloadClient>>
     slug: "footer",
     data: {
       summary:
-        "Development placeholder footer. Replace with verified Omega Line company description before production use.",
+        "Omega Line Egypt — premium salt products for food, industrial, and pharmaceutical applications.",
     },
   });
 
@@ -63,6 +63,7 @@ async function seedGlobals(payload: Awaited<ReturnType<typeof getPayloadClient>>
       ],
       cellNumbers: [
         { number: "+2 011 1 550 85 45" },
+        { number: "+2 014 0 209 555" },
         { number: "+2 012 2 399 49 09" },
         { number: "+2 011 1 093 20 01" },
       ],

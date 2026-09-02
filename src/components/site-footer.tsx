@@ -3,7 +3,8 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getContactInformation, getFooter, getSocialLinks } from "@/lib/cms";
 import { localizedNav, navLabels } from "@/lib/labels";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 import { SocialIcon } from "./social-icon-link";
 
 type FooterGlobal = {
@@ -15,8 +16,8 @@ type FooterGlobal = {
 };
 
 type ContactGlobal = {
-  email?: string | null;
-  phone?: string | null;
+  telephoneNumbers?: Array<{ number?: string | null }> | null;
+  emailAddresses?: Array<{ email?: string | null }> | null;
   address?: string | null;
 };
 
@@ -65,7 +66,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
           />
           <p className="mt-4 max-w-md text-sm leading-7 text-white/75">
             {footer?.summary ??
-              "Placeholder catalog foundation. Final company claims, certificates, and contact details require client verification."}
+              "Omega Line Egypt — premium salt products for food, industrial, and pharmaceutical applications."}
           </p>
           {socialLinks.length > 0 ? (
             <ul className="mt-5 flex flex-wrap gap-2">
@@ -102,17 +103,19 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
         <address className="not-italic">
           <p className="text-sm font-bold uppercase text-white/60">{labels.contactHeading}</p>
           <div className="mt-4 grid gap-3 text-sm leading-6 text-white/75">
-            <a href={`mailto:${contact?.email ?? "export@omega-lines.local"}`} className="inline-flex items-center gap-2 text-white/75 hover:text-white">
-              <Mail aria-hidden="true" size={14} className="shrink-0" />
-              {contact?.email ?? "export@omega-lines.local"}
-            </a>
-            <a href={`tel:${(contact?.phone ?? "+00 000 000 0000").replaceAll(" ", "")}`} className="inline-flex items-center gap-2 text-white/75 hover:text-white">
-              <Phone aria-hidden="true" size={14} className="shrink-0" />
-              {contact?.phone ?? "+00 000 000 0000"}
+            {contact?.emailAddresses?.filter((e) => e.email).map((item) => (
+              <a key={item.email} href={`mailto:${item.email}`} className="inline-flex items-center gap-2 text-white/75 hover:text-white">
+                <Mail aria-hidden="true" size={14} className="shrink-0" />
+                {item.email}
+              </a>
+            ))}
+            <a href="https://wa.me/201115508545" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/75 hover:text-white">
+              <FaWhatsapp aria-hidden="true" size={14} className="shrink-0" />
+              0111 550 8545
             </a>
             <p className="inline-flex items-center gap-2 text-white/75">
               <MapPin aria-hidden="true" size={14} className="shrink-0" />
-              {contact?.address ?? "Location pending verification"}
+              {contact?.address ?? "16 Rabaa Investment Buildings, Nozha St., Nasr City, Cairo – Egypt"}
             </p>
           </div>
         </address>

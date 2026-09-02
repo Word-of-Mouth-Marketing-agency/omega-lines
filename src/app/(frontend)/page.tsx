@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Homepage } from "@/components/homepage";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { FloatingWhatsapp } from "@/components/floating-whatsapp";
 import { getHomepage } from "@/lib/cms";
 import { buildMetadata } from "@/lib/seo";
 import messages from "../../../messages/en.json";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <SiteHeader locale="en" />
       <Homepage locale="en" />
       <SiteFooter locale="en" />
+      <FloatingWhatsapp locale="en" />
     </NextIntlClientProvider>
   );
 }

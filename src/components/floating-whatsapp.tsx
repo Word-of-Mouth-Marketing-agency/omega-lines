@@ -2,6 +2,8 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { getSocialLinks } from "@/lib/cms";
 import type { Locale } from "@/i18n/routing";
 
+const WHATSAPP_FALLBACK = "https://wa.me/201115508545";
+
 type SocialLinksGlobal = {
   links?: Array<{
     label?: string | null;
@@ -11,17 +13,16 @@ type SocialLinksGlobal = {
 
 export async function FloatingWhatsapp({ locale }: { locale: Locale }) {
   const social = await getSocialLinks(locale) as SocialLinksGlobal | null;
-  if (!social?.links) return null;
 
-  const whatsappLink = social.links.find(
+  const whatsappLink = social?.links?.find(
     (item) => item.label?.toLowerCase().trim().includes("whatsapp") && item.url
   );
 
-  if (!whatsappLink?.url) return null;
+  const href = whatsappLink?.url || WHATSAPP_FALLBACK;
 
   return (
     <a
-      href={whatsappLink.url}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contact us on WhatsApp"

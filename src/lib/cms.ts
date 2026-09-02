@@ -92,7 +92,7 @@ const reviewContact = {
   address: "16 Rabaa Investment Buildings, Nozha St., Nasr City, Cairo – Egypt",
   telephoneNumbers: [{ number: "+202 2 418 61 56" }, { number: "+202 2 690 74 98" }],
   faxNumbers: [{ number: "+202 2 690 01 94" }],
-  cellNumbers: [{ number: "+2 011 1 550 85 45" }, { number: "+2 012 2 399 49 09" }, { number: "+2 011 1 093 20 01" }],
+  cellNumbers: [{ number: "+2 011 1 550 85 45" }, { number: "+2 014 0 209 555" }, { number: "+2 012 2 399 49 09" }, { number: "+2 011 1 093 20 01" }],
   emailAddresses: [{ email: "info@omegalineegypt.com" }, { email: "omega.line.eg@gmail.com" }],
 };
 
