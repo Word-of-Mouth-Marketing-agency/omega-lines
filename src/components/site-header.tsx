@@ -16,8 +16,8 @@ type HeaderGlobal = {
 };
 
 type ContactGlobal = {
-  email?: string | null;
-  phone?: string | null;
+  telephoneNumbers?: Array<{ number?: string | null }> | null;
+  emailAddresses?: Array<{ email?: string | null }> | null;
   address?: string | null;
 };
 
@@ -65,8 +65,8 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
       navItems={navItems}
       productsByCategory={productsByCategory}
       contact={{
-        email: contact?.email ?? "export@omega-lines.local",
-        phone: contact?.phone ?? "+00 000 000 0000",
+        email: contact?.emailAddresses?.[0]?.email ?? "export@omega-lines.local",
+        phone: contact?.telephoneNumbers?.[0]?.number ?? "+00 000 000 0000",
         location: contact?.address ?? "Location pending verification",
       }}
       socialLinks={socialLinks}

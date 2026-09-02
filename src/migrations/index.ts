@@ -5,6 +5,10 @@ import * as migration_20260728_product_subcategories from './20260728_product_su
 import * as migration_20260728_hero_video from './20260728_hero_video';
 import * as migration_20260804_inquiry_form_fields from './20260804_inquiry_form_fields';
 import * as migration_20260804_inquiry_legacy_compat from './20260804_inquiry_legacy_compat';
+import * as migration_20260902_contact_information_arrays from './20260902_contact_information_arrays';
+import * as migration_20260902_homepage_about_strengths from './20260902_homepage_about_strengths';
+import * as migration_20260902_homepage_about_locale_fields from './20260902_homepage_about_locale_fields';
+import * as migration_20260902_about_page_global from './20260902_about_page_global';
 
 export const migrations = [
   {
@@ -41,5 +45,25 @@ export const migrations = [
     up: migration_20260804_inquiry_legacy_compat.up,
     down: migration_20260804_inquiry_legacy_compat.down,
     name: '20260804_inquiry_legacy_compat',
+  },
+  {
+    up: migration_20260902_contact_information_arrays.up,
+    down: migration_20260902_contact_information_arrays.down,
+    name: '20260902_contact_information_arrays',
+  },
+  {
+    up: migration_20260902_homepage_about_strengths.up,
+    down: migration_20260902_homepage_about_strengths.down,
+    name: '20260902_homepage_about_strengths',
+  },
+  {
+    up: migration_20260902_homepage_about_locale_fields.up,
+    down: migration_20260902_homepage_about_locale_fields.down,
+    name: '20260902_homepage_about_locale_fields',
+  },
+  {
+    up: migration_20260902_about_page_global.up,
+    down: migration_20260902_about_page_global.down,
+    name: '20260902_about_page_global',
   },
 ];
