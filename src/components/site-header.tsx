@@ -1,11 +1,7 @@
 import type { Locale } from "@/i18n/routing";
-import {
-  getContactInformation,
-  getHeaderNavigation,
-  getSocialLinks,
-} from "@/lib/cms";
+import { getContactInformation, getHeaderNavigation, getSocialLinks } from "@/lib/cms";
 import { productCategories, products } from "@/data/products";
-import { primaryNav } from "@/lib/site";
+import { localizedNav } from "@/lib/labels";
 import { SiteHeaderClient } from "./site-header-client";
 
 type HeaderGlobal = {
@@ -40,9 +36,9 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
       ? navigation.items
           .filter((item) => item.label && item.href)
           .map((item) => ({ href: item.href as string, label: item.label as string }))
-      : primaryNav.map((item) => ({
+      : localizedNav(locale).map((item) => ({
           href: item.href,
-          label: item.label === "About" ? "About Us" : item.label,
+          label: item.label,
         }));
 
   const socialLinks =

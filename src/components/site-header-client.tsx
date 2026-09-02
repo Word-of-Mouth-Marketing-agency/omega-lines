@@ -26,6 +26,7 @@ import { createPortal } from "react-dom";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { locales } from "@/i18n/routing";
+import { navLabels } from "@/lib/labels";
 import { LanguageSwitcher } from "./language-switcher";
 import { SocialIcon } from "./social-icon-link";
 
@@ -120,6 +121,7 @@ export function SiteHeaderClient({
   const productsMenuRef = useRef<HTMLLIElement>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const productLabels = productNavigationLabels[locale];
+  const labels = navLabels[locale];
 
   useEffect(() => {
     const updateScrolled = () => setScrolled(window.scrollY > 8);
@@ -554,7 +556,7 @@ export function SiteHeaderClient({
               locale={locale}
               className="inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--color-primary-strong)] px-5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(10,63,122,0.18)] transition hover:bg-[var(--color-primary)] active:scale-[0.98]"
             >
-              Request a Quote
+              {labels.requestQuote}
             </Link>
           </div>
 
@@ -564,7 +566,7 @@ export function SiteHeaderClient({
             className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-md border border-[var(--color-border)] text-sm font-bold text-[var(--color-ink)] lg:hidden"
             aria-expanded={menuOpen}
             aria-controls={drawerId}
-            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            aria-label={menuOpen ? labels.closeNavigation : labels.openNavigation}
             onClick={() => setMenuOpen((value: boolean) => !value)}
           >
             {menuOpen ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
@@ -578,7 +580,7 @@ export function SiteHeaderClient({
           ref={drawerRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Mobile navigation"
+          aria-label={labels.mobileNavigation}
           aria-hidden={!menuOpen}
           className={`fixed inset-0 z-[100] transition-opacity duration-200 ${
             menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
@@ -615,13 +617,13 @@ export function SiteHeaderClient({
                 type="button"
                 onClick={closeDrawer}
                 className="flex min-h-11 min-w-11 items-center justify-center rounded-md text-[var(--color-ink)] transition-colors hover:bg-[var(--color-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
-                aria-label="Close navigation"
+                aria-label={labels.closeNavigation}
               >
                 <X aria-hidden="true" size={22} />
               </button>
             </div>
 
-            <nav aria-label="Mobile navigation" className="flex-1 px-3 py-4">
+            <nav aria-label={labels.mobileNavigation} className="flex-1 px-3 py-4">
               <ul className="grid gap-0.5">
                 {navItems.map((item) => {
                   const active = isActive(pathname, item.href);
@@ -706,13 +708,13 @@ export function SiteHeaderClient({
                 onClick={closeDrawer}
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-[var(--color-primary-strong)] px-4 text-sm font-bold text-white shadow-[0_10px_24px_rgba(10,63,122,0.18)] transition hover:bg-[var(--color-primary)] active:scale-[0.98]"
               >
-                Request a Quote <ArrowRight aria-hidden="true" size={16} />
+                {labels.requestQuote} <ArrowRight aria-hidden="true" size={16} />
               </Link>
             </div>
 
             <div className="border-t border-[var(--color-border)] px-3 py-4">
               <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
-                Language
+                {labels.language}
               </p>
               <div className="flex gap-2">
                 {locales.map((item) => {
@@ -728,7 +730,7 @@ export function SiteHeaderClient({
                           ? "bg-[var(--color-primary)] text-white"
                           : "border border-[var(--color-border)] text-[var(--color-ink)] hover:bg-[var(--color-soft)]"
                       }`}
-                      aria-label={activeLocale ? `${item.toUpperCase()} (current)` : item.toUpperCase()}
+                      aria-label={activeLocale ? `${item.toUpperCase()} (${labels.languageCurrent})` : item.toUpperCase()}
                     >
                       {item}
                     </Link>

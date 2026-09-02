@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getContactInformation, getFooter, getSocialLinks } from "@/lib/cms";
-import { primaryNav } from "@/lib/site";
+import { localizedNav, navLabels } from "@/lib/labels";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SocialIcon } from "./social-icon-link";
 
@@ -34,14 +34,16 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
     getSocialLinks(locale) as Promise<SocialLinksGlobal | null>,
   ]);
 
+  const labels = navLabels[locale];
+
   const footerLinks =
     footer?.links?.length
       ? footer.links
           .filter((item) => item.label && item.href)
           .map((item) => ({ href: item.href as string, label: item.label as string }))
-      : primaryNav.map((item) => ({
+      : localizedNav(locale).map((item) => ({
           href: item.href,
-          label: item.label === "About" ? "About Us" : item.label,
+          label: item.label,
         }));
 
   const socialLinks =
@@ -86,7 +88,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
           ) : null}
         </div>
         <nav aria-label="Footer navigation">
-          <p className="text-sm font-bold uppercase text-white/60">Main links</p>
+          <p className="text-sm font-bold uppercase text-white/60">{labels.mainLinks}</p>
           <ul className="mt-4 grid gap-3 text-sm">
             {footerLinks.map((item) => (
               <li key={item.href}>
@@ -98,7 +100,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
           </ul>
         </nav>
         <address className="not-italic">
-          <p className="text-sm font-bold uppercase text-white/60">Contact</p>
+          <p className="text-sm font-bold uppercase text-white/60">{labels.contactHeading}</p>
           <div className="mt-4 grid gap-3 text-sm leading-6 text-white/75">
             <a href={`mailto:${contact?.email ?? "export@omega-lines.local"}`} className="inline-flex items-center gap-2 text-white/75 hover:text-white">
               <Mail aria-hidden="true" size={14} className="shrink-0" />
@@ -118,9 +120,9 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
       <div className="border-t border-white/10">
         <div className="mx-auto flex min-h-14 w-full max-w-7xl flex-col items-center justify-center px-4 py-4 text-center text-xs text-white/55 sm:px-6 lg:px-8">
           <p>
-            {"\u00A9"} {new Date().getFullYear()} Omega Line Egypt. All rights reserved.{" "}
+            {"\u00A9"} {new Date().getFullYear()} Omega Line Egypt. {labels.allRightsReserved}{" "}
             <span aria-hidden="true">·</span>{" "}
-            Powered by{" "}
+            {labels.poweredBy}{" "}
             <a
               href="https://wordofmoutheg.com"
               target="_blank"
