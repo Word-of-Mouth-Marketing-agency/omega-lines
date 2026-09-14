@@ -25,6 +25,7 @@ export type HomepageProfileContent = {
   welcomeHighlights: Array<{ title: string; description: string }>;
   welcomeMarketsHeading: string;
   welcomeMarkets: string[];
+  moreMarketsLabel: string;
   welcomeLegacyNote: string;
   aboutEyebrow: string;
   aboutHeading: string;
@@ -105,6 +106,7 @@ const en: HomepageProfileContent = {
   ],
   welcomeMarketsHeading: "Markets named in the welcome document",
   welcomeMarkets: ["Cameroon", "Côte d’Ivoire", "Equatorial Guinea", "Mauritius", "Angola", "Congo", "Togo", "Ghana", "Nigeria", "Senegal", "Burundi", "Netherlands", "Germany", "Turkey", "Ethiopia", "Sudan", "Morocco", "Syria", "Lebanon", "Malta", "Bahrain", "China", "Poland", "Kenya", "Rwanda", "Benin", "Tanzania", "Uganda"],
+  moreMarketsLabel: "+ More markets",
   welcomeLegacyNote: "The welcome document records ISO 9001:2008 for export of salt and quality management systems, and ISO 22000:2005 for food safety management systems. Newer certificate documents are presented on the About Us page.",
   aboutEyebrow: "About Omega Line Egypt",
   aboutHeading: "A Trusted Egyptian Salt Partner for Global Industries",
@@ -284,6 +286,7 @@ const fr: HomepageProfileContent = {
   ],
   welcomeMarketsHeading: "Marchés cités dans le document Welcome",
   welcomeMarkets: en.welcomeMarkets,
+  moreMarketsLabel: "+ Autres marchés",
   welcomeLegacyNote: "Le document Welcome mentionne ISO 9001:2008 pour l’exportation du sel et les systèmes de management de la qualité, ainsi qu’ISO 22000:2005 pour les systèmes de management de la sécurité alimentaire. Des certificats plus récents figurent sur la page À propos.",
   aboutEyebrow: "À propos d'Omega Line Egypt",
   aboutHeading: "Un partenaire égyptien fiable pour les industries mondiales",
@@ -412,6 +415,7 @@ const de: HomepageProfileContent = {
   ],
   welcomeMarketsHeading: "Im Welcome-Dokument genannte Märkte",
   welcomeMarkets: en.welcomeMarkets,
+  moreMarketsLabel: "+ Weitere Märkte",
   welcomeLegacyNote: "Das Welcome-Dokument nennt ISO 9001:2008 für Salzexport und Qualitätsmanagementsysteme sowie ISO 22000:2005 für Lebensmittelsicherheits-Managementsysteme. Neuere Zertifikatsdokumente werden auf der Über-uns-Seite gezeigt.",
   aboutEyebrow: "Über Omega Line Egypt",
   aboutHeading: "Ein verlässlicher ägyptischer Salzpartner für globale Industrien",

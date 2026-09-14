@@ -49,8 +49,8 @@ export function HomepageGalleryPreview({ items }: HomepageGalleryPreviewProps) {
 
   return (
     <>
-      <StaggerGrid className="mx-auto mt-10 grid max-w-7xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8" stagger={0.06}>
-        {items.slice(0, 6).map((item, index) => {
+      <StaggerGrid className="mx-auto mt-10 grid max-w-7xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-2 lg:px-8" stagger={0.06}>
+        {items.slice(0, 4).map((item, index) => {
           const hasImage = isMedia(item.image);
           const img = hasImage ? (item.image as MediaLike) : null;
           return (
@@ -60,7 +60,7 @@ export function HomepageGalleryPreview({ items }: HomepageGalleryPreviewProps) {
                 if (hasImage) openLightbox(index);
               }}
               disabled={!hasImage}
-              className={`gallery-tile group relative overflow-hidden text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] ${
+              className={`gallery-tile group relative aspect-[4/3] overflow-hidden text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] ${
                 hasImage ? "cursor-pointer" : "cursor-default"
               }`}
               aria-label={hasImage ? `Open full preview of ${item.title ?? "gallery image"}` : undefined}

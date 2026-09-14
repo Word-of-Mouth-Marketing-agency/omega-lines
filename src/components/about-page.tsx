@@ -59,12 +59,13 @@ const historyMarkets = [
   "Poland", "Kenya", "Rwanda", "Benin", "Tanzania", "Uganda",
 ];
 
-const historyCopy: Record<Locale, { eyebrow: string; heading: string; description: string; markets: string; since: string; download: string; document: string }> = {
+const historyCopy: Record<Locale, { eyebrow: string; heading: string; description: string; markets: string; moreMarkets: string; since: string; download: string; document: string }> = {
   en: {
     eyebrow: "Our story",
     heading: "Salt expertise built since 2000",
     description: "Omega Line Egypt began working in salt export and supply around 2000. The company history records thousands of tons supplied annually across Europe, Africa and the Middle East, supported by international quality systems and customer-specific production.",
     markets: "Markets named in our company history",
+    moreMarkets: "+ More markets",
     since: "Operating since",
     download: "Download certificate",
     document: "Supplied certificate document",
@@ -74,6 +75,7 @@ const historyCopy: Record<Locale, { eyebrow: string; heading: string; descriptio
     heading: "Une expertise du sel développée depuis 2000",
     description: "Omega Line Egypt exerce dans l’exportation et la fourniture de sel depuis environ 2000. Son historique fait état de milliers de tonnes fournies chaque année en Europe, en Afrique et au Moyen-Orient, selon des systèmes qualité internationaux et les spécifications des clients.",
     markets: "Marchés cités dans notre historique",
+    moreMarkets: "+ Autres marchés",
     since: "En activité depuis",
     download: "Télécharger le certificat",
     document: "Document de certificat fourni",
@@ -83,6 +85,7 @@ const historyCopy: Record<Locale, { eyebrow: string; heading: string; descriptio
     heading: "Salzkompetenz seit 2000",
     description: "Omega Line Egypt ist seit etwa 2000 im Export und in der Lieferung von Salz tätig. Die Unternehmensgeschichte nennt jährlich Tausende gelieferte Tonnen in Europa, Afrika und dem Nahen Osten – unterstützt durch internationale Qualitätssysteme und kundenspezifische Produktion.",
     markets: "In unserer Unternehmensgeschichte genannte Märkte",
+    moreMarkets: "+ Weitere Märkte",
     since: "Tätig seit",
     download: "Zertifikat herunterladen",
     document: "Bereitgestelltes Zertifikatsdokument",
@@ -123,7 +126,7 @@ function SectionIntro({
 
   return (
     <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <p className={light ? "section-eyebrow text-white/60" : "section-eyebrow"}>{eyebrow}</p>
+      <p className={light ? "section-eyebrow !text-blue-200" : "section-eyebrow"}>{eyebrow}</p>
       <Heading
         id={headingId}
         className={`mt-3 text-3xl font-black tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08] ${
@@ -306,6 +309,7 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
             <p className="mt-9 text-xs font-black uppercase tracking-[.16em] text-white/55">{story.markets}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {historyMarkets.map((market) => <span key={market} className="rounded-full border border-white/15 bg-white/[.06] px-3 py-2 text-xs font-semibold text-white/80">{market}</span>)}
+              <span className="rounded-full border border-dashed border-blue-200/60 bg-blue-200/10 px-3 py-2 text-xs font-semibold text-blue-100">{story.moreMarkets}</span>
             </div>
           </Reveal>
         </div>

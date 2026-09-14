@@ -28,7 +28,7 @@ import type { Locale } from "@/i18n/routing";
 import { locales } from "@/i18n/routing";
 import { navLabels } from "@/lib/labels";
 import { LanguageSwitcher } from "./language-switcher";
-import { SocialIcon } from "./social-icon-link";
+import { getSocialPlatform, SocialIcon } from "./social-icon-link";
 
 type NavItem = {
   href: string;
@@ -71,7 +71,7 @@ function isProductsItem(item: NavItem) {
   return path === "/products";
 }
 
-const preHeaderSocialLabels = ["facebook", "whatsapp", "x"];
+const preHeaderSocialLabels = ["facebook", "whatsapp", "x", "linkedin"];
 
 const productNavigationLabels: Record<Locale, { heading: string; viewAll: string; empty: string }> = {
   en: {
@@ -335,7 +335,7 @@ export function SiteHeaderClient({
           </div>
           <div className="flex items-center gap-2">
             {preHeaderSocialLabels.map((key) => {
-              const link = socialLinks.find((item) => item.label.toLowerCase().trim() === key);
+              const link = socialLinks.find((item) => getSocialPlatform(item.label) === key);
               if (!link?.url) return null;
               return (
                 <a

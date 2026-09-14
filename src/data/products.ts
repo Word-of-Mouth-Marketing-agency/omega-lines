@@ -170,13 +170,6 @@ const productDefinitions: ProductDefinition[] = [
     applications: ["Road de-icing", "Highway maintenance", "Snow and ice melting", "Winter operations"],
   },
   {
-    slug: "road-salt", sourceFolder: "De Icing salt/Road Salt", category: "De-Icing",
-    name: "Road Salt",
-    shortDescription: "Industrial rock salt in customer-specific grain sizes for road treatment.",
-    description: ["Road salt is an industrial rock-salt product offered in a broad range of granulations and grain sizes.", "The selected grading can be tailored to customer requirements and the intended road-treatment operation."],
-    applications: ["Road treatment", "Winter road safety", "Selected granulation", "Ice management"],
-  },
-  {
     slug: "crushed-raw-sea-salt", sourceFolder: "De Icing salt/Crushed Raw Salt", category: "De-Icing",
     name: "Crushed Raw Sea Salt",
     shortDescription: "Mixed fine and coarse sea-salt crystals for immediate and lasting de-icing.",

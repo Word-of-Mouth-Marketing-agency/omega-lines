@@ -143,7 +143,7 @@ const en: AboutProfileContent = {
   certificatesDescription:
     "The supplied documents include ISO 9001:2015 and ISO 22000:2018 certification documents for Omega Line Egypt.",
   certificatesNote:
-    "The ISO 9001:2015 document shows an expiry date of June 2028. The ISO 22000:2018 document shows an expiry date of 10 December 2026. The separate certificate summary also records earlier ISO 9001:2008 and ISO 22000:2005 certificates.",
+    "The ISO 9001:2015 document shows an expiry date of June 2028. The ISO 22000:2018 document shows an expiry date of 10 Dec 2029. The separate certificate summary also records earlier ISO 9001:2008 and ISO 22000:2005 certificates.",
   certificateAction: "View certificate",
   closeCertificateLabel: "Close certificate",
   finalCtaEyebrow: "Customer-required specifications",
@@ -215,7 +215,7 @@ const fr: AboutProfileContent = {
   certificatesEyebrow: "Certificats fournis",
   certificatesHeading: "Documents de certification ISO",
   certificatesDescription: "Les documents fournis comprennent les certificats ISO 9001:2015 et ISO 22000:2018 d’Omega Line Egypt.",
-  certificatesNote: "Le document ISO 9001:2015 indique une expiration au juin 2028. Le document ISO 22000:2018 indique une expiration au 10 décembre 2026. Le résumé séparé mentionne également les anciens certificats ISO 9001:2008 et ISO 22000:2005.",
+  certificatesNote: "Le document ISO 9001:2015 indique une expiration en juin 2028. Le document ISO 22000:2018 indique une expiration au 10 décembre 2029. Le résumé séparé mentionne également les anciens certificats ISO 9001:2008 et ISO 22000:2005.",
   certificateAction: "Voir le certificat",
   closeCertificateLabel: "Fermer le certificat",
   finalCtaEyebrow: "Spécifications requises par le client",
@@ -285,7 +285,7 @@ const de: AboutProfileContent = {
   certificatesEyebrow: "Bereitgestellte Zertifikate",
   certificatesHeading: "ISO-Zertifizierungsdokumente",
   certificatesDescription: "Die bereitgestellten Unterlagen umfassen die Zertifikate ISO 9001:2015 und ISO 22000:2018 von Omega Line Egypt.",
-  certificatesNote: "Das ISO-9001:2015-Dokument zeigt Juni 2028 als Ablaufdatum. Das ISO-22000:2018-Dokument zeigt den 10. Dezember 2026. Die separate Zusammenfassung nennt außerdem die früheren Zertifikate ISO 9001:2008 und ISO 22000:2005.",
+  certificatesNote: "Das ISO-9001:2015-Dokument zeigt Juni 2028 als Ablaufdatum. Das ISO-22000:2018-Dokument zeigt den 10. Dezember 2029. Die separate Zusammenfassung nennt außerdem die früheren Zertifikate ISO 9001:2008 und ISO 22000:2005.",
   certificateAction: "Zertifikat ansehen",
   closeCertificateLabel: "Zertifikat schließen",
   finalCtaEyebrow: "Kundenseitig geforderte Spezifikationen",

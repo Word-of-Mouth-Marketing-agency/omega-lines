@@ -142,6 +142,8 @@ const shippingImages = [
   },
 ];
 
+const homepageGalleryPreviewIndexes = [0, 1, 3, 5] as const;
+
 function isGallery(value: GalleryLike | number | null | undefined): value is GalleryLike {
   return typeof value === "object" && value !== null && typeof value.title === "string";
 }
@@ -287,6 +289,10 @@ export async function Homepage({ locale }: { locale: Locale }) {
     selectedGallery.length > 0
       ? selectedGallery
       : (activeGallery.length > 0 ? activeGallery : staticGalleryFallback) as GalleryLike[];
+  const galleryPreviewItems = (galleryItems.length >= 6
+    ? homepageGalleryPreviewIndexes.map((index) => galleryItems[index])
+    : galleryItems.slice(0, 4)
+  ).filter((item): item is GalleryLike => Boolean(item));
 
   const cmsIndustries = homepage?.industries?.filter((item) => item.title) ?? [];
   const industries = isPlaceholderCollection(cmsIndustries, (item) => item.description)
@@ -424,6 +430,9 @@ export async function Homepage({ locale }: { locale: Locale }) {
                     {market}
                   </span>
                 ))}
+                <span className="rounded-full border border-dashed border-[var(--color-primary)] bg-[var(--color-soft)] px-3 py-2 text-xs font-bold text-[var(--color-primary-strong)]">
+                  {profile.moreMarketsLabel}
+                </span>
               </div>
             </div>
             <div className="bg-[var(--color-primary-strong)] p-6 text-sm leading-7 text-white/75">
@@ -670,7 +679,7 @@ export async function Homepage({ locale }: { locale: Locale }) {
           description={resolveProfileCopy(homepage?.galleryDescription, profile.galleryDescription)}
         />
         {galleryItems.length > 0 ? (
-          <HomepageGalleryPreview items={galleryItems.slice(0, 6) as GalleryLike[]} />
+          <HomepageGalleryPreview items={galleryPreviewItems} />
         ) : (
           <div className="mx-auto mt-10 max-w-4xl border border-dashed border-[var(--color-border)] bg-[var(--color-soft)] p-8 text-center text-sm text-[var(--color-muted)]">
             {profile.galleryDescription}

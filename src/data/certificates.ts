@@ -25,6 +25,6 @@ export const certificates: CertificateData[] = [
     imageAlt: "ISO 22000:2018 certificate for Omega Line Egypt",
     documentUrl: "/documents/certificates/iso-22000-certificate.pdf",
     scope: "ISO 22000:2018 food safety management system certificate.",
-    documentDate: "Expiry shown: 10 December 2026",
+    documentDate: "Expiry shown: 10 Dec 2029",
   },
 ];

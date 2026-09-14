@@ -534,38 +534,6 @@ export const productImages: Record<string, ProductImage[]> = {
       "height": 1170
     }
   ],
-  "road-salt": [
-    {
-      "url": "/images/products/catalog/road-salt/001-3j0zzuf1s8s9v06u2tmzjfpdtvypz1baw1illo8fzeetp3vr-iywbasp6ddfq2y8-36338fa075.webp",
-      "alt": "Road Salt - 3j0zzuf1s8s9v06u2TmZjfPdTVYpZ1BaW1ilLo8FZEETp3vr IYwbasp6ddfQ2y8rtNIOnvjBBmEFxFlQ5SmiTINCLW vNTCGiN briItrQlRyXWKz7CoXNHUxXiwNibgFYNQ8p4rx9qVRZUS4tBdA17ILiKhFd3Cqx71z gj",
-      "width": 1131,
-      "height": 1600
-    },
-    {
-      "url": "/images/products/catalog/road-salt/002-images-de-icing-33815ee601.webp",
-      "alt": "Road Salt - images De Icing",
-      "width": 194,
-      "height": 259
-    },
-    {
-      "url": "/images/products/catalog/road-salt/003-qn4-qahb6aaug35fgcmoujekg6ufz8jwyxuwd9zudgdj1mrywojfc-61ryndkbl4-23abed40c7.webp",
-      "alt": "Road Salt - QN4 QaHb6aaUg35fgCmOUJekG6ufZ8JwyXuwd9zudGdj1MRywojfC 61rynDKBL4Xn3ehkZSCvwwOSoTjIkPYSXmH4g8D8436EYXlPPeerEXqFDrY6xMZnQCi8hUteCnPmvMUSghg2e3Sf6QRZbpcgBje4PhkDHxaR JdIogy",
-      "width": 1600,
-      "height": 1066
-    },
-    {
-      "url": "/images/products/catalog/road-salt/004-v810vn9cfikcyl3j56xcm7tul-8xsf9aizusmbusz5yf0fpweilmz7zpzfqsuzba-d088914b78.webp",
-      "alt": "Road Salt - v810VN9CFikCyL3J56XcM7tUl 8xsf9aiZUSmbUsz5yF0FPWEilMZ7zPzfQsUZBAOShEtMVLDVpfy 4tFZYFSJF A2HZYsZSHbvykNA7FDxeKM ayNUpmBXH4uCZ9BvpTaHOzAtPO dKdiU5P7OS3drdhgQ61PIIVEYyF7e7FvA4W9oh",
-      "width": 1010,
-      "height": 567
-    },
-    {
-      "url": "/images/products/catalog/road-salt/005-whatsapp-image-2026-08-18-at-4-09-30-pm-54c35d018b.webp",
-      "alt": "Road Salt - WhatsApp Image 2026 08 18 at 4.09.30 PM",
-      "width": 547,
-      "height": 542
-    }
-  ],
   "crushed-raw-sea-salt": [
     {
       "url": "/images/products/catalog/crushed-raw-sea-salt/001-rock-salt-70189acf27.webp",

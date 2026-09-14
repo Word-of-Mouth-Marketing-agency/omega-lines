@@ -25,6 +25,26 @@ export type CmsSeo = {
   noIndex?: boolean | null;
 };
 
+type CmsSocialLink = {
+  label?: string | null;
+  url?: string | null;
+};
+
+type CmsSocialLinks = {
+  links?: CmsSocialLink[] | null;
+};
+
+const LINKEDIN_SOCIAL_LINK: CmsSocialLink = {
+  label: "Omega Line Egypt on LinkedIn",
+  url: "https://www.linkedin.com/company/omega-line-egypt0/",
+};
+
+function isLinkedInSocialLink(link: CmsSocialLink): boolean {
+  const label = link.label?.toLowerCase() ?? "";
+  const url = link.url?.toLowerCase() ?? "";
+  return label.includes("linkedin") || url.includes("linkedin.com/");
+}
+
 export type CmsProductCategory = {
   id?: string | number;
   slug?: string | null;
@@ -156,7 +176,25 @@ export async function getContactInformation(locale: Locale) {
 }
 
 export async function getSocialLinks(locale: Locale) {
-  return getGlobal("social-links", locale, 1);
+  const social = await getGlobal("social-links", locale, 1) as CmsSocialLinks | null;
+  const links = social?.links ?? [];
+  let hasLinkedIn = false;
+  const normalizedLinks = links
+    .filter((link) => link.label || link.url)
+    .map((link) => {
+      if (!isLinkedInSocialLink(link)) return link;
+      if (hasLinkedIn) return null;
+      hasLinkedIn = true;
+      return {
+        ...link,
+        label: LINKEDIN_SOCIAL_LINK.label,
+        url: LINKEDIN_SOCIAL_LINK.url,
+      };
+    })
+    .filter((link): link is CmsSocialLink => Boolean(link));
+
+  if (!hasLinkedIn) normalizedLinks.push(LINKEDIN_SOCIAL_LINK);
+  return { ...(social ?? {}), links: normalizedLinks };
 }
 
 export async function getAboutPage(locale: Locale) {
