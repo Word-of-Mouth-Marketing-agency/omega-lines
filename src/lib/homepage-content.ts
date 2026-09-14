@@ -198,15 +198,15 @@ const en: HomepageProfileContent = {
       description: "For high-volume industrial processing and large-scale handling requirements.",
     },
     {
-      title: "1-ton jumbo bags",
+      title: "1 ton - 1.250 ton bags",
       description: "Efficient handling for factories, warehouses and export shipments.",
     },
     {
-      title: "25 kg industrial bags",
+      title: "250g, 500g and 1 kg",
       description: "A practical format for food processors, distributors and industrial users.",
     },
     {
-      title: "1 kg and 500 g retail bags",
+      title: "10 kg - 25 kg and 50 kg",
       description: "Consumer-ready formats for refined, coarse and vacuum salt products.",
     },
   ],

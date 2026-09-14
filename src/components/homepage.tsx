@@ -171,7 +171,7 @@ function SectionIntro({
   return (
     <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow ? (
-        <p className={light ? "section-eyebrow text-blue-200" : "section-eyebrow"}>{eyebrow}</p>
+        <p className={light ? "section-eyebrow !text-blue-200" : "section-eyebrow"}>{eyebrow}</p>
       ) : null}
       <h2
         className={`mt-3 text-3xl font-black tracking-normal sm:text-4xl ${
@@ -488,7 +488,7 @@ export async function Homepage({ locale }: { locale: Locale }) {
         <SectionIntro
           eyebrow="Salt Products"
           title="Our Complete Salt Product Range"
-          description="Explore ten Omega Line products directly, each with its real product image, applications, and quote request path."
+          description="Explore Omega Line products directly, each with its real product image, applications, and quote request path."
         />
         <div className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8">
           <ProductCarousel items={products} locale={locale} />

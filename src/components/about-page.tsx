@@ -300,7 +300,7 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
             </div>
           </Reveal>
           <Reveal direction="right" className="px-4 py-16 sm:px-8 lg:px-14 lg:py-20">
-            <p className="section-eyebrow text-white/60">{story.eyebrow}</p>
+            <p className="section-eyebrow !text-blue-200">{story.eyebrow}</p>
             <h2 id="about-story-heading" className="mt-4 max-w-2xl text-3xl font-black tracking-tight sm:text-4xl">{story.heading}</h2>
             <p className="mt-6 max-w-3xl text-base leading-8 text-white/70">{story.description}</p>
             <p className="mt-9 text-xs font-black uppercase tracking-[.16em] text-white/55">{story.markets}</p>
@@ -340,7 +340,7 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
           <Reveal direction="left" distance={30} className="border-white/10 px-4 py-16 sm:px-6 lg:border-r lg:px-8 lg:py-20 xl:pr-16">
             <div className="flex items-center gap-3 text-white/60">
               <Target aria-hidden="true" size={20} />
-              <p className="section-eyebrow text-white/60">{profile.missionEyebrow}</p>
+              <p className="section-eyebrow !text-blue-200">{profile.missionEyebrow}</p>
             </div>
             <h2 className="mt-5 text-3xl font-black leading-tight text-white sm:text-4xl">{missionHeading}</h2>
             <p className="mt-5 text-base leading-8 text-white/70">{missionDescription}</p>
@@ -507,7 +507,7 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
       <Reveal as="section" className="final-cta" aria-labelledby="about-final-cta-heading">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="max-w-3xl">
-            <p className="section-eyebrow text-white/60">{profile.finalCtaEyebrow}</p>
+            <p className="section-eyebrow !text-blue-200">{profile.finalCtaEyebrow}</p>
             <h2 id="about-final-cta-heading" className="mt-3 text-3xl font-black leading-tight text-white sm:text-4xl">
               {profile.finalCtaHeading}
             </h2>
