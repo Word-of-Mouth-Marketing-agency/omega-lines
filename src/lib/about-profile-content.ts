@@ -14,6 +14,10 @@ export type AboutProfileContent = {
   overviewHeading: string;
   overviewParagraphs: string[];
   overviewStatement: string;
+  supplyEyebrow: string;
+  supplyHeading: string;
+  supplyDescription: string;
+  supplyHighlights: AboutFeature[];
   capabilitiesEyebrow: string;
   capabilitiesHeading: string;
   capabilitiesDescription: string;
@@ -74,6 +78,16 @@ const en: AboutProfileContent = {
     "Products are packed and prepared to conform to required chemical and standard specifications under the supervision of professional and skilled staff, with the aim of meeting customer requirements in different countries.",
   ],
   overviewStatement: "Our main target is to advance the salt industry and export globally.",
+  supplyEyebrow: "How we support customers",
+  supplyHeading: "A Complete and Reliable Supply Solution",
+  supplyDescription:
+    "Omega Line Egypt coordinates qualified sources, quality checks, packaging and export logistics so international customers can work with one responsible supply partner.",
+  supplyHighlights: [
+    { title: "Multiple qualified sources", description: "Alternative supply options support continuity when capacity or operating conditions change." },
+    { title: "Coordinated quality control", description: "Specifications, inspection, certificates of analysis, packaging and loading are coordinated before shipment. Independent third-party inspection can also be arranged on request." },
+    { title: "Export logistics", description: "Shipping documents, freight options and shipment follow-up are managed from Egypt to the customer’s destination." },
+    { title: "One point of responsibility", description: "One partner coordinates suppliers, inspections, transport, shipping lines, documentation and after-sales support." },
+  ],
   capabilitiesEyebrow: "What we do",
   capabilitiesHeading: "Our Core Activities",
   capabilitiesDescription:
@@ -117,7 +131,7 @@ const en: AboutProfileContent = {
   reachEyebrow: "International export history",
   reachHeading: "Our Export Markets",
   reachDescription:
-    "The company history states that Omega Line Egypt exported thousands of tons annually to Germany, the Netherlands, Nigeria, Cameroon, Côte d’Ivoire, Ghana, Mauritius, Equatorial Guinea, Angola, Senegal, Ethiopia, the Central African Republic, Congo, Turkey, Togo, Bahrain, Malta and Syria.",
+    "The company history states that Omega Line Egypt exported thousands of tons annually to Germany, the Netherlands, Nigeria, Cameroon, Côte d’Ivoire, Ghana, Mauritius, Equatorial Guinea, Angola, Senegal, Ethiopia, the Central African Republic, Congo, Turkey, Togo and Syria.",
   reachPoints: [
     "Countries in Europe and Africa",
     "Other international markets",
@@ -170,6 +184,16 @@ const fr: AboutProfileContent = {
     "Les produits sont conditionnés afin de respecter les spécifications chimiques et normatives requises, sous la supervision d’un personnel professionnel et qualifié.",
   ],
   overviewStatement: "Notre objectif principal est de faire progresser l’industrie du sel et son exportation mondiale.",
+  supplyEyebrow: "Comment nous accompagnons nos clients",
+  supplyHeading: "Une solution d’approvisionnement complète et fiable",
+  supplyDescription:
+    "Omega Line Egypt coordonne les sources qualifiées, les contrôles qualité, le conditionnement et la logistique export afin que les clients internationaux disposent d’un seul partenaire responsable.",
+  supplyHighlights: [
+    { title: "Plusieurs sources qualifiées", description: "Des options d’approvisionnement alternatives favorisent la continuité lorsque la capacité ou les conditions d’exploitation évoluent." },
+    { title: "Contrôle qualité coordonné", description: "Les spécifications, l’inspection, les certificats d’analyse, le conditionnement et le chargement sont coordonnés avant l’expédition. Une inspection indépendante peut être organisée sur demande." },
+    { title: "Logistique export", description: "Les documents d’expédition, les options de fret et le suivi de la livraison sont gérés depuis l’Égypte jusqu’à la destination du client." },
+    { title: "Un seul point de responsabilité", description: "Un partenaire coordonne les fournisseurs, les inspections, le transport, les lignes maritimes, la documentation et le suivi après-vente." },
+  ],
   capabilitiesEyebrow: "Nos activités",
   capabilitiesHeading: "Nos activités principales",
   capabilitiesDescription: "Notre travail se concentre sur l’exportation et la fourniture.",
@@ -198,7 +222,7 @@ const fr: AboutProfileContent = {
   ],
   reachEyebrow: "Historique international des exportations",
   reachHeading: "Nos marchés d’exportation",
-  reachDescription: "L’historique indique qu’Omega Line Egypt exporte chaque année des milliers de tonnes vers l’Allemagne, les Pays-Bas, le Nigeria, le Cameroun, la Côte d’Ivoire, le Ghana, Maurice, la Guinée équatoriale, l’Angola, le Sénégal, l’Éthiopie, la République centrafricaine, le Congo, la Turquie, le Togo, Bahreïn, Malte et la Syrie.",
+  reachDescription: "L’historique indique qu’Omega Line Egypt exporte chaque année des milliers de tonnes vers l’Allemagne, les Pays-Bas, le Nigeria, le Cameroun, la Côte d’Ivoire, le Ghana, Maurice, la Guinée équatoriale, l’Angola, le Sénégal, l’Éthiopie, la République centrafricaine, le Congo, la Turquie, le Togo et la Syrie.",
   reachPoints: ["Pays d’Europe et d’Afrique", "Autres marchés internationaux", "Milliers de tonnes exportées chaque année selon l’historique", "Systèmes qualité internationaux suivis"],
   partnershipEyebrow: "Relation internationale d’approvisionnement",
   partnershipHeading: "Sel iodé pur séché sous vide",
@@ -240,6 +264,16 @@ const de: AboutProfileContent = {
     "Die Produkte werden unter Aufsicht professioneller und qualifizierter Mitarbeiter nach den geforderten chemischen und normativen Spezifikationen verpackt und vorbereitet.",
   ],
   overviewStatement: "Unser Hauptziel ist es, die Salzindustrie und den weltweiten Export voranzubringen.",
+  supplyEyebrow: "Wie wir Kunden unterstützen",
+  supplyHeading: "Eine vollständige und zuverlässige Versorgungslösung",
+  supplyDescription:
+    "Omega Line Egypt koordiniert qualifizierte Bezugsquellen, Qualitätskontrollen, Verpackung und Exportlogistik, damit internationale Kunden einen verantwortlichen Lieferpartner haben.",
+  supplyHighlights: [
+    { title: "Mehrere qualifizierte Quellen", description: "Alternative Bezugsquellen unterstützen die Versorgungskontinuität, wenn sich Kapazitäten oder Betriebsbedingungen ändern." },
+    { title: "Koordinierte Qualitätskontrolle", description: "Spezifikationen, Inspektion, Analysezertifikate, Verpackung und Verladung werden vor dem Versand koordiniert. Eine unabhängige Prüfung kann auf Anfrage organisiert werden." },
+    { title: "Exportlogistik", description: "Versanddokumente, Frachtoptionen und Sendungsnachverfolgung werden von Ägypten bis zum Zielort des Kunden betreut." },
+    { title: "Ein verantwortlicher Ansprechpartner", description: "Ein Partner koordiniert Lieferanten, Prüfungen, Transporte, Reedereien, Dokumentation und Unterstützung nach dem Verkauf." },
+  ],
   capabilitiesEyebrow: "Unsere Tätigkeiten",
   capabilitiesHeading: "Unsere Kernaktivitäten",
   capabilitiesDescription: "Unsere Arbeit konzentriert sich auf Export und Lieferung.",
@@ -268,7 +302,7 @@ const de: AboutProfileContent = {
   ],
   reachEyebrow: "Internationale Exportgeschichte",
   reachHeading: "Unsere Exportmärkte",
-  reachDescription: "Die Unternehmensgeschichte gibt an, dass Omega Line Egypt jährlich Tausende Tonnen nach Deutschland, in die Niederlande, nach Nigeria, Kamerun, Côte d’Ivoire, Ghana, Mauritius, Äquatorialguinea, Angola, Senegal, Äthiopien, in die Zentralafrikanische Republik, den Kongo, die Türkei, nach Togo, Bahrain, Malta und Syrien exportiert.",
+  reachDescription: "Die Unternehmensgeschichte gibt an, dass Omega Line Egypt jährlich Tausende Tonnen nach Deutschland, in die Niederlande, nach Nigeria, Kamerun, Côte d’Ivoire, Ghana, Mauritius, Äquatorialguinea, Angola, Senegal, Äthiopien, in die Zentralafrikanische Republik, den Kongo, die Türkei, nach Togo und Syrien exportiert.",
   reachPoints: ["Länder in Europa und Afrika", "Weitere internationale Märkte", "Laut Geschichte jährlich Tausende Tonnen exportiert", "Internationale Qualitätssysteme befolgt"],
   partnershipEyebrow: "Internationale Lieferbeziehung",
   partnershipHeading: "Reines vakuumgetrocknetes Jodsalz",

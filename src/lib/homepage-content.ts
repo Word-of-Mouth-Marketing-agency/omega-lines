@@ -95,7 +95,7 @@ const en: HomepageProfileContent = {
     "Omega Line Egypt supplies raw materials for processing factories as well as finished salt products. The company’s original Dolphin trademark is distributed for edible iodized salt and the food-industry sector, while products carrying customers’ own logos have also been supplied on a regular basis.",
     "Prompt service, quality and an affordable price are presented as the company’s competitive foundation. The business describes established relationships across Europe, Africa, the Middle East and the Far East.",
     "The document describes salt as an industry that supports Egypt’s economy and as a mineral product with many uses that became the company’s main export line. It also records overseas growth, international business connections and plans to create branches abroad.",
-    "Malta and Bahrain are identified as markets for water-softening salt pellets. The document also highlights raw salt supplied to processors, where material quality can improve processing results and create savings for factories.",
+    "The document also highlights raw salt supplied to processors, where material quality can improve processing results and create savings for factories.",
   ],
   welcomeQuote: "High quality and good service with an affordable price.",
   welcomeHighlights: [
@@ -105,7 +105,7 @@ const en: HomepageProfileContent = {
     { title: "Service promise", description: "High quality, good service and an affordable price form the stated competitive position." },
   ],
   welcomeMarketsHeading: "Markets named in the welcome document",
-  welcomeMarkets: ["Cameroon", "Côte d’Ivoire", "Equatorial Guinea", "Mauritius", "Angola", "Congo", "Togo", "Ghana", "Nigeria", "Senegal", "Burundi", "Netherlands", "Germany", "Turkey", "Ethiopia", "Sudan", "Morocco", "Syria", "Lebanon", "Malta", "Bahrain", "China", "Poland", "Kenya", "Rwanda", "Benin", "Tanzania", "Uganda"],
+  welcomeMarkets: ["Cameroon", "Côte d’Ivoire", "Equatorial Guinea", "Mauritius", "Angola", "Congo", "Togo", "Ghana", "Nigeria", "Senegal", "Burundi", "Netherlands", "Germany", "Turkey", "Ethiopia", "Sudan", "Morocco", "Syria", "Lebanon", "China", "Poland", "Kenya", "Rwanda", "Benin", "Tanzania", "Uganda"],
   moreMarketsLabel: "+ More markets",
   welcomeLegacyNote: "The welcome document records ISO 9001:2008 for export of salt and quality management systems, and ISO 22000:2005 for food safety management systems. Newer certificate documents are presented on the About Us page.",
   aboutEyebrow: "About Omega Line Egypt",
@@ -275,7 +275,7 @@ const fr: HomepageProfileContent = {
     "Omega Line Egypt fournit des matières premières aux usines de transformation ainsi que des produits finis. La marque originale Dolphin est distribuée pour le sel iodé alimentaire et le secteur agroalimentaire, tandis que des produits portant les logos des clients sont également fournis régulièrement.",
     "La rapidité du service, la qualité et un prix abordable constituent le positionnement concurrentiel déclaré. L’entreprise décrit des relations établies en Europe, en Afrique, au Moyen-Orient et en Extrême-Orient.",
     "Le document présente le sel comme une industrie qui soutient l’économie égyptienne et comme un produit minéral aux nombreux usages devenu la principale ligne d’exportation de l’entreprise. Il mentionne également la croissance internationale, les relations commerciales mondiales et la création de succursales à l’étranger.",
-    "Malte et Bahreïn sont identifiés comme marchés pour les pastilles de sel d’adoucissement de l’eau. Le document souligne aussi l’approvisionnement des transformateurs en sel brut, dont la qualité peut améliorer les résultats de traitement et générer des économies.",
+    "Le document souligne aussi l’approvisionnement des transformateurs en sel brut, dont la qualité peut améliorer les résultats de traitement et générer des économies.",
   ],
   welcomeQuote: "Haute qualité, bon service et prix abordable.",
   welcomeHighlights: [
@@ -404,7 +404,7 @@ const de: HomepageProfileContent = {
     "Omega Line Egypt liefert Rohstoffe für Verarbeitungsbetriebe sowie fertige Salzprodukte. Die ursprüngliche Marke Dolphin wird für jodiertes Speisesalz und die Lebensmittelindustrie vertrieben; außerdem werden Produkte mit Kundenlogos regelmäßig geliefert.",
     "Schneller Service, Qualität und ein erschwinglicher Preis bilden die erklärte Wettbewerbsgrundlage. Das Unternehmen beschreibt etablierte Beziehungen in Europa, Afrika, dem Nahen Osten und Fernost.",
     "Das Dokument beschreibt Salz als eine Industrie, die Ägyptens Wirtschaft unterstützt, und als vielseitiges Mineralprodukt, das zur wichtigsten Exportlinie des Unternehmens wurde. Es nennt außerdem internationales Wachstum, weltweite Geschäftsverbindungen und die Gründung von Niederlassungen im Ausland.",
-    "Malta und Bahrain werden als Märkte für Wasserenthärtungssalz-Pellets genannt. Das Dokument hebt zudem Rohsalz für Verarbeiter hervor, dessen Qualität die Verarbeitungsergebnisse verbessern und Einsparungen ermöglichen kann.",
+    "Das Dokument hebt zudem Rohsalz für Verarbeiter hervor, dessen Qualität die Verarbeitungsergebnisse verbessern und Einsparungen ermöglichen kann.",
   ],
   welcomeQuote: "Hohe Qualität, guter Service und ein erschwinglicher Preis.",
   welcomeHighlights: [

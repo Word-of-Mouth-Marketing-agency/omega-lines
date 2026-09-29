@@ -55,7 +55,7 @@ type CertificateView = {
 const historyMarkets = [
   "Germany", "Netherlands", "Nigeria", "Cameroon", "Côte d’Ivoire", "Ghana",
   "Mauritius", "Equatorial Guinea", "Angola", "Senegal", "Ethiopia",
-  "Central African Republic", "Congo", "Turkey", "Togo", "Bahrain", "Malta", "Syria",
+  "Central African Republic", "Congo", "Turkey", "Togo", "Syria",
   "Poland", "Kenya", "Rwanda", "Benin", "Tanzania", "Uganda",
 ];
 
@@ -101,6 +101,7 @@ const pageTitles: Record<Locale, string> = {
 const capabilityIcons = [Factory, ShieldCheck, Package, Ship];
 const processIcons = [ClipboardCheck, Factory, FlaskConical, Package];
 const qualityIcons = [BadgeCheck, Target, ShieldCheck, Eye];
+const supplyIcons = [Globe2, ShieldCheck, Ship, Handshake];
 function isMedia(value: AboutPage["overviewImage"]): boolean {
   return typeof value === "object" && value !== null && typeof value.url === "string";
 }
@@ -289,6 +290,31 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
               ))}
             </div>
           </div>
+        </div>
+      </Reveal>
+
+      <Reveal as="section" className="section-band bg-[var(--color-soft)]" aria-labelledby="about-supply-heading">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow={profile.supplyEyebrow}
+            title={profile.supplyHeading}
+            description={profile.supplyDescription}
+            headingId="about-supply-heading"
+          />
+          <StaggerGrid className="mt-12 grid gap-px overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
+            {profile.supplyHighlights.map((highlight, index) => {
+              const Icon = supplyIcons[index] ?? Handshake;
+              return (
+                <article key={highlight.title} className="group bg-white p-7 transition-colors hover:bg-[#fbfcfc]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-[var(--color-primary)] transition-transform group-hover:-translate-y-1">
+                    <Icon aria-hidden="true" size={23} />
+                  </div>
+                  <h3 className="mt-6 text-lg font-black text-[var(--color-ink)]">{highlight.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">{highlight.description}</p>
+                </article>
+              );
+            })}
+          </StaggerGrid>
         </div>
       </Reveal>
 
