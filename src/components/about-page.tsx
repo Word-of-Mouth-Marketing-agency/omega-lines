@@ -301,7 +301,7 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
             description={profile.supplyDescription}
             headingId="about-supply-heading"
           />
-          <StaggerGrid className="mt-12 grid gap-px overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
+          <StaggerGrid className="mt-12 grid gap-px overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-2" stagger={0.08}>
             {profile.supplyHighlights.map((highlight, index) => {
               const Icon = supplyIcons[index] ?? Handshake;
               return (
@@ -310,7 +310,7 @@ export function AboutUsPage({ locale, data: raw }: AboutPageProps) {
                     <Icon aria-hidden="true" size={23} />
                   </div>
                   <h3 className="mt-6 text-lg font-black text-[var(--color-ink)]">{highlight.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">{highlight.description}</p>
+                  <p className="mt-3 whitespace-pre-line text-sm leading-7 text-[var(--color-muted)]">{highlight.description}</p>
                 </article>
               );
             })}
